@@ -1,4 +1,6 @@
-﻿namespace Tiles
+﻿using Examples.Tutorial;
+
+namespace Tiles
 {
     internal class Program
     {
@@ -8,6 +10,11 @@
             {
                 game.Run(60.0);
             }
+
+//            using (Test game = new Test())
+//            {
+//                game.Run(60.0);
+//            }
         }
     }
 }

@@ -5,8 +5,8 @@ namespace Tiles
 {
     public class Constants
     {
-        public static float tileSize = 1f;
-        public static Vector2 dim = new Vector2(1000, 1000);
+        public static float tileSize = 100f;
+        public static Vector2 dim = new Vector2(10, 10);
         public static Vector2 windowSize = new Vector2(dim.X * tileSize, dim.Y * tileSize);
 
         // Player Constants

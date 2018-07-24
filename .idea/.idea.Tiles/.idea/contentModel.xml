@@ -3,6 +3,9 @@
   <component name="ContentModelStore">
     <e p="C:\Users\Notebook\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_Tiles.895842522.00" t="ExcludeRecursive" />
     <e p="C:\Users\Notebook\Desktop\Tiles" t="IncludeRecursive">
+      <e p="Assets" t="Include">
+        <e p="Tiles" t="Include" />
+      </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="Game.cs" t="Include" />
       <e p="obj" t="ExcludeRecursive" />
@@ -16,6 +19,7 @@
       <e p="src" t="Include">
         <e p="Constants.cs" t="Include" />
         <e p="Player.cs" t="Include" />
+        <e p="Texture.cs" t="Include" />
         <e p="Tiles" t="Include">
           <e p="GrassTile.cs" t="Include" />
           <e p="PathTile.cs" t="Include" />
@@ -29,6 +33,7 @@
           <e p="Random.cs" t="Include" />
         </e>
       </e>
+      <e p="Test.cs" t="Include" />
       <e p="Tiles.csproj" t="IncludeRecursive" />
       <e p="Tiles.sln" t="IncludeFlat" />
     </e>

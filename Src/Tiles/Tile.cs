@@ -10,12 +10,30 @@ namespace Tiles.Tiles
         protected Vector2 location;
         protected Vector3 color;
         protected Vector2[] vertcies;
+        protected Texture tex;
+        protected bool drawTexture;
         private float size = Constants.tileSize;
+
+        public Tile(Vector2 location, Vector3 color, Texture tex)
+        {
+            this.location = location;
+            this.color = color;
+            this.tex = tex;
+            drawTexture = true;
+            vertcies = new[]
+            {
+                new Vector2((location.X) * Constants.tileSize, (location.Y) * Constants.tileSize), // Top Left
+                new Vector2((location.X + 1) * Constants.tileSize, (location.Y) * Constants.tileSize), // Top Right
+                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1)* Constants.tileSize), // Bottom Right
+                new Vector2((location.X) * Constants.tileSize, (location.Y + 1)* Constants.tileSize) // Bottom Left
+            };
+        }
 
         public Tile(Vector2 location, Vector3 color)
         {
             this.location = location;
             this.color = color;
+            drawTexture = false;
             vertcies = new[]
             {
                 new Vector2((location.X) * Constants.tileSize, (location.Y) * Constants.tileSize),
@@ -69,19 +87,44 @@ namespace Tiles.Tiles
 
         public void Render()
         {
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(color);
-            GL.Vertex2(vertcies[0]);
+            if (!drawTexture)
+            {
+                GL.Begin(PrimitiveType.Quads);
+                GL.Color3(color);
+                GL.Vertex2(vertcies[0]);
 
-            GL.Color3(color);
-            GL.Vertex2(vertcies[1]);
+                GL.Color3(color);
+                GL.Vertex2(vertcies[1]);
 
-            GL.Color3(color);
-            GL.Vertex2(vertcies[2]);
+                GL.Color3(color);
+                GL.Vertex2(vertcies[2]);
 
-            GL.Color3(color);
-            GL.Vertex2(vertcies[3]);
-            GL.End();
+                GL.Color3(color);
+                GL.Vertex2(vertcies[3]);
+                GL.End();
+            }
+            else
+            {
+//                GL.BindTexture(TextureTarget.Texture2D, tex.texId);
+                tex.Load();
+                GL.Begin(PrimitiveType.Quads);
+                GL.Color3(color);
+                GL.TexCoord2(0, 0);
+                GL.Vertex2(vertcies[0]);
+
+                GL.Color3(color);
+                GL.TexCoord2(1, 0);
+                GL.Vertex2(vertcies[1]);
+
+                GL.Color3(color);
+                GL.TexCoord2(1, 1);
+                GL.Vertex2(vertcies[2]);
+
+                GL.Color3(color);
+                GL.TexCoord2(0, 1);
+                GL.Vertex2(vertcies[3]);
+                GL.End();
+            }
         }
 
         public override string ToString()

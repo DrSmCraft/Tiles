@@ -62,7 +62,7 @@ namespace Tiles
 
                     if (z < 0.05)
                     {
-                        tempList.Add(new WaterTile(vec));
+                         tempList.Add(new WaterTile(vec));
                     }
                     else if (z > 0.05 && z < 0.8)
                     {
@@ -70,7 +70,7 @@ namespace Tiles
                     }
                     else if (z > 0.8)
                     {
-                        tempList.Add(new StoneTile(vec));
+                         tempList.Add(new StoneTile(vec));
                     }
 
 

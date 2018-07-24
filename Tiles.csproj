@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Constants.cs" />
     <Compile Include="Src\Player.cs" />
+    <Compile Include="Src\Texture.cs" />
     <Compile Include="Src\Tiles\GrassTile.cs" />
     <Compile Include="Src\Tiles\PathTile.cs" />
     <Compile Include="Src\Tiles\PlayerTile.cs" />
@@ -58,10 +59,14 @@
     <Compile Include="Src\Tiles\WaterTile.cs" />
     <Compile Include="Src\Util\Perlin.cs" />
     <Compile Include="Src\Util\Random.cs" />
+    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Tiles" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

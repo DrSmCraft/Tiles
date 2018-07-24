@@ -55,7 +55,7 @@ namespace Tiles
                 for (var j = 0; j < Constants.dim.X; j++)
                 {
                     var vec = new Vector2(i, j);
-                    var z = (simplexPerlin.GetValue(i, j) + 1) / 2;
+                    var z = (simplexPerlin.GetValue(i * Constants.generatorZoom, j * Constants.generatorZoom) + 1) / 2;
 //                    float v = voronoi.GetValue(i, j, z);
 
 

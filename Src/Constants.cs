@@ -8,11 +8,13 @@ namespace Tiles
         public static float tileSize = 100f;
         public static Vector2 dim = new Vector2(10, 10);
         public static Vector2 windowSize = new Vector2(dim.X * tileSize, dim.Y * tileSize);
+        public static float generatorZoom = 0.1f;
 
         // Player Constants
         public static Vector3 playerColor = new Vector3(1f, 0, 0);
         public static float playerMoveAmount = 0.1f;
         public static float playerSize = 30f;
+        public static PlayerTexture playerTexture = new PlayerTexture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerFront.png", 100, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerBack.png", 101, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerLeft.png", 102, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerRight.png", 103);
 
         // Keyboard Constants
         public static Key moveLeft = Key.A;

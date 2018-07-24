@@ -4,7 +4,7 @@ namespace Tiles.Tiles
 {
     public class PlayerTile : Tile
     {
-        public PlayerTile(Vector2 location) : base(location, Constants.playerColor)
+        public PlayerTile(Vector2 location, PlayerTexture tex) : base(location, Constants.playerColor)
         {
             vertcies = new[]
             {

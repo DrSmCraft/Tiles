@@ -11,7 +11,7 @@ namespace Tiles
         public Player()
         {
             location = new Vector2(0, 0);
-            playerTile = new PlayerTile(location);
+            playerTile = new PlayerTile(location, Constants.playerTexture);
         }
 
         public Vector2 GetLocation()

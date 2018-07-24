@@ -84,7 +84,7 @@ namespace Tiles.Tiles
             Translate(new Vector2(Constants.tileMoveAmount, 0));
         }
 
-        public void Render()
+        public virtual void Render()
         {
             if (!drawTexture)
             {

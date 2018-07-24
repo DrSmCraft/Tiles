@@ -51,9 +51,11 @@
     <Compile Include="Src\Constants.cs" />
     <Compile Include="Src\Player.cs" />
     <Compile Include="Src\Tiles\GrassTile.cs" />
+    <Compile Include="Src\Tiles\PathTile.cs" />
     <Compile Include="Src\Tiles\PlayerTile.cs" />
     <Compile Include="Src\Tiles\StoneTile.cs" />
     <Compile Include="Src\Tiles\Tile.cs" />
+    <Compile Include="Src\Tiles\WaterTile.cs" />
     <Compile Include="Src\Util\Perlin.cs" />
     <Compile Include="Src\Util\Random.cs" />
   </ItemGroup>

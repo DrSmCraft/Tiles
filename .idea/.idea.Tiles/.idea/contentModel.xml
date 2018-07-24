@@ -18,9 +18,11 @@
         <e p="Player.cs" t="Include" />
         <e p="Tiles" t="Include">
           <e p="GrassTile.cs" t="Include" />
+          <e p="PathTile.cs" t="Include" />
           <e p="PlayerTile.cs" t="Include" />
           <e p="StoneTile.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
+          <e p="WaterTile.cs" t="Include" />
         </e>
         <e p="Util" t="Include">
           <e p="Perlin.cs" t="Include" />

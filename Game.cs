@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using LibNoise;
+using LibNoise.Filter;
+using LibNoise.Modifier;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using LibNoise.Primitive;
 using Tiles.Tiles;
 
 
@@ -12,7 +16,12 @@ namespace Tiles
     public class Game : GameWindow
     {
         private Player player = new Player();
-        KeyboardState keyboardState, lastKeyboardState;
+        private KeyboardState keyboardState, lastKeyboardState;
+
+        private int seed;
+        private SimplexPerlin simplexPerlin;
+        private Voronoi voronoi;
+
 
         private List<List<Tile>> tiles = new List<List<Tile>>();
 
@@ -20,6 +29,13 @@ namespace Tiles
         {
             VSync = VSyncMode.On;
             SetupGL();
+            seed = 1000;
+            simplexPerlin = new SimplexPerlin(seed, NoiseQuality.Fast);
+
+            voronoi = new Voronoi();
+            voronoi.Primitive3D = simplexPerlin;
+            voronoi.Distance = false;
+
             GenerateTiles();
         }
 
@@ -39,18 +55,28 @@ namespace Tiles
                 List<Tile> tempList = new List<Tile>();
                 for (int j = 0; j < Constants.dim.X; j++)
                 {
+                    Vector2 vec = new Vector2(i, j);
+                    float z = (simplexPerlin.GetValue(i, j) + 1) / 2;
+//                    float v = voronoi.GetValue(i, j, z);
 
 
-                    if (j % 2 == 0)
+                    if (z < 0.05)
                     {
-                        tempList.Add(new StoneTile(new Vector2(i, j)));
+                        tempList.Add(new WaterTile(vec));
                     }
-                    else
+                    else if (z > 0.05 && z < 0.8)
                     {
-                        tempList.Add(new GrassTile(new Vector2(i, j)));
+                        tempList.Add(new GrassTile(vec));
                     }
+                    else if (z > 0.8)
+                    {
+                        tempList.Add(new StoneTile(vec));
+                    }
+
+
 
                 }
+
                 tiles.Add(tempList);
             }
         }

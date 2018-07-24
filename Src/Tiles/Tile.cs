@@ -7,9 +7,9 @@ namespace Tiles.Tiles
 {
     public class Tile
     {
-        private Vector2 location;
-        private Vector3 color;
-        private Vector2[] vertcies;
+        protected Vector2 location;
+        protected Vector3 color;
+        protected Vector2[] vertcies;
         private float size = Constants.tileSize;
 
         public Tile(Vector2 location, Vector3 color)
@@ -35,7 +35,7 @@ namespace Tiles.Tiles
             return color;
         }
 
-        public void Translate(Vector2 moveVector)
+        public virtual void Translate(Vector2 moveVector)
         {
             location += moveVector;
             vertcies = new[]

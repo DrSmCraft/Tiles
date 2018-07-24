@@ -8,10 +8,10 @@ namespace Tiles.Tiles
         {
             vertcies = new[]
             {
-                new Vector2((location.X) * Constants.playerSize, (location.Y) * Constants.playerSize),
-                new Vector2((location.X + 1) * Constants.playerSize, (location.Y) * Constants.playerSize),
+                new Vector2(location.X * Constants.playerSize, location.Y * Constants.playerSize),
+                new Vector2((location.X + 1) * Constants.playerSize, location.Y * Constants.playerSize),
                 new Vector2((location.X + 1) * Constants.playerSize, (location.Y + 1) * Constants.playerSize),
-                new Vector2((location.X) * Constants.playerSize, (location.Y + 1) * Constants.playerSize)
+                new Vector2(location.X * Constants.playerSize, (location.Y + 1) * Constants.playerSize)
             };
         }
 
@@ -20,12 +20,11 @@ namespace Tiles.Tiles
             location += moveVector;
             vertcies = new[]
             {
-                new Vector2((location.X) * Constants.playerSize, (location.Y) * Constants.playerSize),
-                new Vector2((location.X + 1) * Constants.playerSize, (location.Y) * Constants.playerSize),
+                new Vector2(location.X * Constants.playerSize, location.Y * Constants.playerSize),
+                new Vector2((location.X + 1) * Constants.playerSize, location.Y * Constants.playerSize),
                 new Vector2((location.X + 1) * Constants.playerSize, (location.Y + 1) * Constants.playerSize),
-                new Vector2((location.X) * Constants.playerSize, (location.Y + 1) * Constants.playerSize)
+                new Vector2(location.X * Constants.playerSize, (location.Y + 1) * Constants.playerSize)
             };
-
         }
     }
 }

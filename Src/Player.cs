@@ -6,7 +6,7 @@ namespace Tiles
     public class Player
     {
         private Vector2 location;
-        private Tile playerTile;
+        private readonly Tile playerTile;
 
         public Player()
         {

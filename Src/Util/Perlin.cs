@@ -4,10 +4,9 @@ namespace Tiles.Util
 {
     public class Perlin
     {
-
         public Perlin()
         {
-            SimplexPerlin perlin = new SimplexPerlin();
+            var perlin = new SimplexPerlin();
             perlin.Seed = 1;
             perlin.GetValue(1, 2);
         }

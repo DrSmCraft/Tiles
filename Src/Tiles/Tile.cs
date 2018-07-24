@@ -1,18 +1,16 @@
-﻿using System;
-using System.Drawing;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
 {
     public class Tile
     {
-        protected Vector2 location;
         protected Vector3 color;
-        protected Vector2[] vertcies;
-        protected Texture tex;
         protected bool drawTexture;
+        protected Vector2 location;
         private float size = Constants.tileSize;
+        protected Texture tex;
+        protected Vector2[] vertcies;
 
         public Tile(Vector2 location, Vector3 color, Texture tex)
         {
@@ -22,10 +20,11 @@ namespace Tiles.Tiles
             drawTexture = true;
             vertcies = new[]
             {
-                new Vector2((location.X) * Constants.tileSize, (location.Y) * Constants.tileSize), // Top Left
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y) * Constants.tileSize), // Top Right
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1)* Constants.tileSize), // Bottom Right
-                new Vector2((location.X) * Constants.tileSize, (location.Y + 1)* Constants.tileSize) // Bottom Left
+                new Vector2(location.X * Constants.tileSize, location.Y * Constants.tileSize), // Top Left
+                new Vector2((location.X + 1) * Constants.tileSize, location.Y * Constants.tileSize), // Top Right
+                new Vector2((location.X + 1) * Constants.tileSize,
+                    (location.Y + 1) * Constants.tileSize), // Bottom Right
+                new Vector2(location.X * Constants.tileSize, (location.Y + 1) * Constants.tileSize) // Bottom Left
             };
         }
 
@@ -36,10 +35,10 @@ namespace Tiles.Tiles
             drawTexture = false;
             vertcies = new[]
             {
-                new Vector2((location.X) * Constants.tileSize, (location.Y) * Constants.tileSize),
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y) * Constants.tileSize),
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1)* Constants.tileSize),
-                new Vector2((location.X) * Constants.tileSize, (location.Y + 1)* Constants.tileSize)
+                new Vector2(location.X * Constants.tileSize, location.Y * Constants.tileSize),
+                new Vector2((location.X + 1) * Constants.tileSize, location.Y * Constants.tileSize),
+                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1) * Constants.tileSize),
+                new Vector2(location.X * Constants.tileSize, (location.Y + 1) * Constants.tileSize)
             };
         }
 
@@ -58,10 +57,10 @@ namespace Tiles.Tiles
             location += moveVector;
             vertcies = new[]
             {
-                new Vector2((location.X) * Constants.tileSize, (location.Y) * Constants.tileSize),
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y) * Constants.tileSize),
-                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1)* Constants.tileSize),
-                new Vector2((location.X) * Constants.tileSize, (location.Y + 1)* Constants.tileSize)
+                new Vector2(location.X * Constants.tileSize, location.Y * Constants.tileSize),
+                new Vector2((location.X + 1) * Constants.tileSize, location.Y * Constants.tileSize),
+                new Vector2((location.X + 1) * Constants.tileSize, (location.Y + 1) * Constants.tileSize),
+                new Vector2(location.X * Constants.tileSize, (location.Y + 1) * Constants.tileSize)
             };
         }
 
@@ -105,22 +104,18 @@ namespace Tiles.Tiles
             }
             else
             {
-//                GL.BindTexture(TextureTarget.Texture2D, tex.texId);
                 tex.Load();
                 GL.Begin(PrimitiveType.Quads);
                 GL.Color3(color);
                 GL.TexCoord2(0, 0);
                 GL.Vertex2(vertcies[0]);
 
-                GL.Color3(color);
                 GL.TexCoord2(1, 0);
                 GL.Vertex2(vertcies[1]);
 
-                GL.Color3(color);
                 GL.TexCoord2(1, 1);
                 GL.Vertex2(vertcies[2]);
 
-                GL.Color3(color);
                 GL.TexCoord2(0, 1);
                 GL.Vertex2(vertcies[3]);
                 GL.End();
@@ -131,7 +126,5 @@ namespace Tiles.Tiles
         {
             return "Tile at <" + location.X + ", " + location.Y + ">";
         }
-
-
     }
 }

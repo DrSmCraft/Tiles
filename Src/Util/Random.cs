@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Tiles.Util
+﻿namespace Tiles.Util
 {
     public class Random
     {
-        public static Object RandomObject(params Object[] list)
+        public static object RandomObject(params object[] list)
         {
-            System.Random rand = new System.Random();
+            var rand = new System.Random();
             return list[rand.Next(0, list.Length)];
         }
     }

@@ -26,5 +26,16 @@ namespace Tiles
         public static Vector3 stoneColor = new Vector3(0.5f, 0.5f, 0.5f);
         public static Vector3 waterColor = new Vector3(0, 0, 1f);
         public static Vector3 pathColor = new Vector3(.5f, .2f, 0f);
+
+
+        // Texture Constants
+        public static Texture grassTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\GrassTile.png", 1);
+        public static Texture stoneTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\StoneTile.png", 2);
+        public static Texture waterTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\WaterTile.png", 3);
+        public static Texture dirtTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\DirtTile.png", 4);
     }
 }

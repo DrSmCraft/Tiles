@@ -5,7 +5,8 @@ namespace Tiles.Tiles
     public class WaterTile : Tile
     {
         private Vector2 location;
-        public WaterTile(Vector2 location) : base(location, Constants.waterColor)
+
+        public WaterTile(Vector2 location) : base(location, Constants.waterColor, Constants.waterTexture)
         {
             this.location = location;
         }

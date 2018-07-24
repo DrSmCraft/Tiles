@@ -2,10 +2,11 @@
 
 namespace Tiles.Tiles
 {
-    public class PathTile : Tile
+    public class DirtTile : Tile
     {
         private Vector2 location;
-        public PathTile(Vector2 location) : base(location, Constants.pathColor)
+
+        public DirtTile(Vector2 location) : base(location, Constants.pathColor, Constants.dirtTexture)
         {
             this.location = location;
         }

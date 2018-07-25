@@ -113,8 +113,8 @@ namespace Tiles
 
 
             lastKeyboardState = keyboardState;
+            Console.Out.WriteLine(player.GetFacing());
 
-//            Console.Out.WriteLine("Player at <" + player.GetLocation().X + ", " + player.GetLocation().Y + ">");
             base.OnUpdateFrame(e);
         }
 

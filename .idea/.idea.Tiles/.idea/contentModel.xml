@@ -46,6 +46,7 @@
           <e p="Perlin.cs" t="Include" />
           <e p="Random.cs" t="Include" />
         </e>
+        <e p="World.cs" t="Include" />
       </e>
       <e p="Tiles.csproj" t="IncludeRecursive" />
       <e p="Tiles.sln" t="IncludeFlat" />

@@ -11,6 +11,9 @@ namespace Tiles
             Front, Back, Left, Right
         }
 
+        // Website used to generate charecter sprite
+        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
+        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#?clothes=longsleeve_brown&legs=pants_teal&mail=chain&nose=straight&ears=big&shoes=boots_golden&weapon=none&hair=plain_dark_blonde&belt=leather&hat=cap_leather
         private Vector2 location;
         private readonly PlayerTile playerTile;
         private PlayerFacing playerFacing;

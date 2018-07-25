@@ -35,6 +35,8 @@ namespace Tiles
         public void Load()
         {
             GL.Enable(EnableCap.Texture2D);
+            GL.Enable(EnableCap.Blend);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
 
             GL.GenTextures(1, out texId);
             GL.BindTexture(TextureTarget.Texture2D, texId);
@@ -42,6 +44,8 @@ namespace Tiles
                 (int) TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
                 (int) TextureMagFilter.Linear);
+
+
 
             var data = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);

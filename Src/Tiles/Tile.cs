@@ -107,16 +107,16 @@ namespace Tiles.Tiles
                 tex.Load();
                 GL.Begin(PrimitiveType.Quads);
                 GL.Color3(color);
-                GL.TexCoord2(0, 0);
+                GL.TexCoord2(0, 1);
                 GL.Vertex2(vertcies[0]);
 
-                GL.TexCoord2(1, 0);
+                GL.TexCoord2(1, 1);
                 GL.Vertex2(vertcies[1]);
 
-                GL.TexCoord2(1, 1);
+                GL.TexCoord2(1, 0);
                 GL.Vertex2(vertcies[2]);
 
-                GL.TexCoord2(0, 1);
+                GL.TexCoord2(0, 0);
                 GL.Vertex2(vertcies[3]);
                 GL.End();
             }

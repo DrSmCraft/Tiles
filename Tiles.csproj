@@ -60,6 +60,7 @@
     <Compile Include="Src\Tiles\WaterTile.cs" />
     <Compile Include="Src\Util\Perlin.cs" />
     <Compile Include="Src\Util\Random.cs" />
+    <Compile Include="Src\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />

@@ -80,7 +80,7 @@ namespace Tiles.Tiles
 //            else
 //            {
                 GL.Begin(PrimitiveType.Quads);
-                GL.Color3(color);
+//                GL.Color3(color);
                 GL.TexCoord2(0, 1);
                 GL.Vertex2(vertcies[0]);
 

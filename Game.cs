@@ -65,30 +65,34 @@ namespace Tiles
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             keyboardState = Keyboard.GetState();
+            if (keyboardState[Key.Escape])
+            {
+                Exit();
+            }
             if (keyboardState[Constants.moveLeft] && lastKeyboardState[Constants.moveLeft]) world.GetPlayer().MoveLeft();
             if (keyboardState[Constants.moveRight] && lastKeyboardState[Constants.moveRight]) world.GetPlayer().MoveRight();
             if (keyboardState[Constants.moveUp] && lastKeyboardState[Constants.moveUp]) world.GetPlayer().MoveUp();
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown]) world.GetPlayer().MoveDown();
 
-            if (IsOutsideWindow(world.GetPlayer().GetLocation()))
-            {
-                world.GetTileAtCoord(world.GetPlayer().GetLocation());
-            }
+
+            Console.Out.WriteLine(IsOutsideWindow(world.GetPlayer().GetLocation()));
+            Console.Out.WriteLine(world.GetPlayer().GetLocation());
+
+
 
 
             lastKeyboardState = keyboardState;
-            Console.Out.WriteLine(world.GetPlayer().GetFacing());
 
             base.OnUpdateFrame(e);
         }
 
         protected bool IsOutsideWindow(Vector2 vec)
         {
-            if (vec.X > Constants.windowSize.X || vec.X < 0)
+            if (vec.X > Constants.dim.X * 2 || vec.X < 0)
             {
                 return true;
             }
-            else if (vec.Y > Constants.windowSize.Y || vec.Y < 0)
+            else if (vec.Y > Constants.dim.Y * 2 || vec.Y < 0)
             {
                 return true;
             }

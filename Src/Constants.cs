@@ -13,7 +13,7 @@ namespace Tiles
         // Player Constants
         public static Vector3 playerColor = new Vector3(1f, 0, 0);
         public static float playerMoveAmount = 0.1f;
-        public static float playerSize = 50f;
+        public static float playerSize = 100f;
         public static PlayerTexture playerTexture = new PlayerTexture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerFront.png", 100, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerBack.png", 101, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerLeft.png", 102, "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerRight.png", 103);
 
         // Keyboard Constants

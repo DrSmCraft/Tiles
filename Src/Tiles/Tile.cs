@@ -101,6 +101,7 @@ namespace Tiles.Tiles
                 GL.Color3(color);
                 GL.Vertex2(vertcies[3]);
                 GL.End();
+                GL.Color3(new Vector3(1f, 1f, 1f));
             }
             else
             {
@@ -119,6 +120,8 @@ namespace Tiles.Tiles
                 GL.TexCoord2(0, 0);
                 GL.Vertex2(vertcies[3]);
                 GL.End();
+                GL.Color3(new Vector3(1f, 1f, 1f));
+
             }
         }
 

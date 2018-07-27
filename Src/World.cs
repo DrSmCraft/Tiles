@@ -12,61 +12,51 @@ namespace Tiles
     {
         protected Player player = new Player();
 
-        protected readonly int seed = 1000;
-        protected SimplexPerlin simplexPerlin;
-
-
-        protected List<List<Tile>> tiles = new List<List<Tile>>();
-        private readonly Voronoi voronoi;
-
+        protected Chunk[,] chunkArray;
 
         public World()
         {
-
-            simplexPerlin = new SimplexPerlin(seed, NoiseQuality.Fast);
-
-            voronoi = new Voronoi();
-            voronoi.Primitive3D = simplexPerlin;
-            voronoi.Distance = false;
-
-            GenerateTiles(0, 0, (int) Constants.dim.X, (int) Constants.dim.Y);
+            chunkArray = new Chunk[(int) Constants.dim.Y, (int) Constants.dim.X];
+            Console.Out.WriteLine(chunkArray);
+            GenerateChunks();
         }
 
-
-        private void GenerateTiles(int minX, int minY, int maxX, int maxY)
+        public void GenerateChunk(int x, int y)
         {
-            for (var i = minY; i < maxY; i++)
-            {
-                var tempList = new List<Tile>();
-                for (var j = minX; j < maxX; j++)
-                {
-                    var vec = new Vector2(i, j);
-                    var z = GenerateTile(i, j);
-//                    float v = voronoi.GetValue(i, j, z);
-
-
-                    if (z < 0.05)
-                    {
-                        tempList.Add(new WaterTile(vec));
-                    }
-                    else if (z > 0.05 && z < 0.8)
-                    {
-                        tempList.Add(new GrassTile(vec));
-                    }
-                    else if (z > 0.8)
-                    {
-                        tempList.Add(new StoneTile(vec));
-                    }
-                }
-
-                tiles.Add(tempList);
-            }
+            chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].Generate();
         }
 
-        private float GenerateTile(int x, int y)
+        public void GenerateChunk(Vector2 vec)
         {
-            return (simplexPerlin.GetValue(x * Constants.generatorZoom, y * Constants.generatorZoom) + 1) / 2;
+            int x = (int) vec.X;
+            int y = (int) vec.Y;
+
+            chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].Generate();
         }
+
+        public bool IsChunkGenerated(int x, int y)
+        {
+            return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].IsChunkGenerated();
+        }
+
+        public bool IsChunkGenerated(Vector2 vec)
+        {
+            int x = (int) vec.X;
+            int y = (int) vec.Y;
+
+            return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].IsChunkGenerated();
+        }
+
+        public Chunk GetChunkAtPlayer()
+        {
+            return chunkArray[(int) player.GetLocation().Y / Constants.chunkSize,
+                (int) player.GetLocation().X / Constants.chunkSize];
+        }
+
+
+
+
+
 
 
         public Player GetPlayer()
@@ -74,71 +64,71 @@ namespace Tiles
             return player;
         }
 
-        public Tile GetTileAtCoord(int x, int y)
+        private void GenerateChunks()
         {
-            try
+            for (int i = 0; i < Constants.dim.Y; i++)
             {
-                return tiles[y][x];
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+                for (int j = 0; j < Constants.dim.X; j++){
 
-        }
-
-        public Tile GetTileAtCoord(Vector2 vec)
-        {
-            int x = (int) vec.X;
-            int y = (int) vec.Y;
-            try
-            {
-                return tiles[y][x];
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
-        }
-
-        public List<Tile> GetRow(int y)
-        {
-            return tiles[y];
-        }
-
-        public List<Tile> GetColumn(int x)
-        {
-            List<Tile> list = new List<Tile>();
-            for (int i = 0; i < tiles[i].Count; i++)
-            {
-                list.Add(tiles[i][x]);
-            }
-
-            return list;
-        }
-
-        public void GenerateRow(int y, int startX)
-        {
-            GenerateTiles(startX, (int) (startX + Constants.dim.X), y, y);
-        }
-
-        public void GenerateColumn(int x, int startY)
-        {
-            GenerateTiles(x, x, startY, (int) (startY + Constants.dim.Y));
-        }
-
-        public void Render()
-        {
-            foreach (List<Tile> list in tiles)
-            {
-                foreach (Tile tile in list)
-                {
-                    tile.Render();
+                    Chunk c = new Chunk(j * Constants.chunkSize, i * Constants.chunkSize);
+                    chunkArray[i, j] = c;
                 }
             }
         }
+
+        public Chunk GetChunk(int x, int y)
+        {
+            return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize];
+        }
+
+//        public Tile GetTileAtCoord(int x, int y)
+//        {
+//            try
+//            {
+//                return tiles[y][x];
+//            }
+//            catch (Exception e)
+//            {
+//                Console.WriteLine(e);
+//                throw;
+//            }
+//
+//        }
+//
+//        public Tile GetTileAtCoord(Vector2 vec)
+//        {
+//            int x = (int) vec.X;
+//            int y = (int) vec.Y;
+//            try
+//            {
+//                return tiles[y][x];
+//            }
+//            catch (Exception e)
+//            {
+//                Console.WriteLine(e);
+//                throw;
+//            }
+//
+//        }
+
+
+
+        public void Render()
+        {
+            for (int i = 0; i < Constants.dim.Y; i++)
+            {
+                for (int j = 0; j < Constants.dim.X; j++)
+                {
+                    if (IsChunkGenerated(i * Constants.chunkSize, j * Constants.chunkSize))
+                    {
+                        Console.Out.WriteLine(chunkArray[i, j].GetString());
+                        chunkArray[i, j].Render();
+                    }
+
+                }
+            }
+        }
+
+
     }
 }

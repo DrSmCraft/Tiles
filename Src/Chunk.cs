@@ -44,7 +44,7 @@ namespace Tiles
             {
                 for (int j = 0; j < Constants.chunkSize; j++)
                 {
-                    array[i, j] = GenerateTile(j + x, i + y);
+                    array[i, j] = GenerateTile(j + x, i + y); // array[i, j] = GenerateTile(j + x, i + y);
                 }
             }
             isGenerated = true;

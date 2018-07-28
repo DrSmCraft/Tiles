@@ -119,11 +119,11 @@ namespace Tiles
             {
                 for (int j = 0; j < Constants.dim.X; j++)
                 {
-                    if (IsChunkGenerated(i * Constants.chunkSize, j * Constants.chunkSize))
-                    {
-                        Console.Out.WriteLine(chunkArray[i, j].GetString());
+//                    if (!IsChunkGenerated(i * Constants.chunkSize, j * Constants.chunkSize))
+//                    {
+//                        Console.Out.WriteLine(chunkArray[j, i].GetString());
                         chunkArray[i, j].Render();
-                    }
+//                    }
 
                 }
             }

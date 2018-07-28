@@ -37,8 +37,8 @@ namespace Tiles
         {
             Width = (int) Constants.windowSize.X;
             Height = (int) Constants.windowSize.Y;
-            world.GetPlayer().Translate(new Vector2(8, 8));
-            world.GenerateChunk(0, 0);
+            world.GetPlayer().Translate(Constants.playerStartPosition);
+            world.GenerateChunk(world.GetPlayer().GetLocation());
             lastPlayerLocation = world.GetPlayer().GetLocation();
 //            Console.Out.WriteLine(world.GetPlayer().GetLocation());
 //            Console.Out.WriteLine(world.IsChunkGenerated(0, 0));
@@ -50,7 +50,7 @@ namespace Tiles
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-//            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 
             world.Render();
@@ -77,13 +77,15 @@ namespace Tiles
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
                 world.GetPlayer().MoveDown();
 
-//            FocusOnChunk(world.GetChunkAtPlayer());
-            Console.Out.WriteLine(world.GetPlayer().GetLocation());
-//            Vector2 vec = world.GetPlayer().GetLocation() - lastPlayerLocation;
-//            GL.Translate(new Vector3(vec.X, vec.Y, 0));
+            Vector2 vec = -1 * (world.GetPlayer().GetLocation() - lastPlayerLocation);
+            Vector3 vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);
+            GL.Translate(vec1);
 
-            if (!world.IsChunkGenerated(world.GetPlayer().GetLocation()))
+            if (!world.GetChunkAtPlayer().IsChunkGenerated())
+            {
                 world.GenerateChunk(world.GetPlayer().GetLocation());
+            }
+
 
 
             lastKeyboardState = keyboardState;
@@ -109,9 +111,6 @@ namespace Tiles
             GL.Ortho(x, y, (int) Constants.windowSize.X + x, (int) Constants.windowSize.Y + y, -1, 1);
         }
 
-//        private bool KeyPress(Key key)
-//        {
-//            return (keyboardState [key] && (keyboardState [key] != lastKeyboardState [key]) );
-//        }
+
     }
 }

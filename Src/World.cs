@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using LibNoise;
-using LibNoise.Filter;
-using LibNoise.Primitive;
 using OpenTK;
-using Tiles.Tiles;
 
 namespace Tiles
 {
     public class World
     {
-        protected Player player = new Player();
-
         protected Chunk[,] chunkArray;
+        protected Player player = new Player();
 
         public World()
         {
@@ -28,8 +22,8 @@ namespace Tiles
 
         public void GenerateChunk(Vector2 vec)
         {
-            int x = (int) vec.X;
-            int y = (int) vec.Y;
+            var x = (int) vec.X;
+            var y = (int) vec.Y;
 
             chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].Generate();
         }
@@ -41,8 +35,8 @@ namespace Tiles
 
         public bool IsChunkGenerated(Vector2 vec)
         {
-            int x = (int) vec.X;
-            int y = (int) vec.Y;
+            var x = (int) vec.X;
+            var y = (int) vec.Y;
 
             return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize].IsChunkGenerated();
         }
@@ -54,11 +48,6 @@ namespace Tiles
         }
 
 
-
-
-
-
-
         public Player GetPlayer()
         {
             return player;
@@ -66,13 +55,11 @@ namespace Tiles
 
         private void GenerateChunks()
         {
-            for (int i = 0; i < Constants.dim.Y; i++)
+            for (var i = 0; i < Constants.dim.Y; i++)
+            for (var j = 0; j < Constants.dim.X; j++)
             {
-                for (int j = 0; j < Constants.dim.X; j++){
-
-                    Chunk c = new Chunk(j * Constants.chunkSize, i * Constants.chunkSize);
-                    chunkArray[i, j] = c;
-                }
+                var c = new Chunk(j * Constants.chunkSize, i * Constants.chunkSize);
+                chunkArray[i, j] = c;
             }
         }
 
@@ -81,54 +68,21 @@ namespace Tiles
             return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize];
         }
 
-//        public Tile GetTileAtCoord(int x, int y)
-//        {
-//            try
-//            {
-//                return tiles[y][x];
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine(e);
-//                throw;
-//            }
-//
-//        }
-//
-//        public Tile GetTileAtCoord(Vector2 vec)
-//        {
-//            int x = (int) vec.X;
-//            int y = (int) vec.Y;
-//            try
-//            {
-//                return tiles[y][x];
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine(e);
-//                throw;
-//            }
-//
-//        }
-
-
+        public int GetAmountChunksGenerated()
+        {
+            var amount = 0;
+            for (var i = 0; i < Constants.dim.Y; i++)
+            for (var j = 0; j < Constants.dim.X; j++)
+                if (chunkArray[i, j].IsChunkGenerated())
+                    amount += 1;
+            return amount;
+        }
 
         public void Render()
         {
-            for (int i = 0; i < Constants.dim.Y; i++)
-            {
-                for (int j = 0; j < Constants.dim.X; j++)
-                {
-//                    if (!IsChunkGenerated(i * Constants.chunkSize, j * Constants.chunkSize))
-//                    {
-//                        Console.Out.WriteLine(chunkArray[j, i].GetString());
-                        chunkArray[i, j].Render();
-//                    }
-
-                }
-            }
+            for (var i = 0; i < Constants.dim.Y; i++)
+            for (var j = 0; j < Constants.dim.X; j++)
+                chunkArray[i, j].Render();
         }
-
-
     }
 }

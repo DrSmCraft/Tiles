@@ -5,22 +5,34 @@ namespace Tiles
 {
     public class Player
     {
+        public enum PlayerAction
+        {
+            None,
+            Hurting
+        }
 
         public enum PlayerFacing
         {
-            Front, Back, Left, Right
+            Front,
+            Back,
+            Left,
+            Right
         }
+
+        private readonly PlayerTile playerTile;
+        private PlayerAction action;
+        private readonly int health;
 
         // Website used to generate charecter sprite
         // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
         // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#?clothes=longsleeve_brown&legs=pants_teal&mail=chain&nose=straight&ears=big&shoes=boots_golden&weapon=none&hair=plain_dark_blonde&belt=leather&hat=cap_leather
         private Vector2 location;
-        private readonly PlayerTile playerTile;
         private PlayerFacing playerFacing;
 
         public Player()
         {
             location = new Vector2(0, 0);
+            health = 10;
             playerTile = new PlayerTile(location, Constants.playerTexture);
         }
 
@@ -61,6 +73,11 @@ namespace Tiles
             playerFacing = PlayerFacing.Right;
             playerTile.SetFacing(playerFacing);
             Translate(new Vector2(Constants.playerMoveAmount, 0));
+        }
+
+        public int GetHealth()
+        {
+            return health;
         }
 
         public PlayerFacing GetFacing()

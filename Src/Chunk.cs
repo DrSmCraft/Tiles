@@ -1,5 +1,4 @@
-﻿using System;
-using LibNoise;
+﻿using LibNoise;
 using LibNoise.Filter;
 using LibNoise.Primitive;
 using OpenTK;
@@ -9,14 +8,12 @@ namespace Tiles
 {
     public class Chunk
     {
-        protected int x, y;
-        protected Tile[,] array = new Tile[Constants.chunkSize, Constants.chunkSize];
-        protected SimplexPerlin simplexPerlin;
-        private readonly Voronoi voronoi;
         protected readonly int seed = 1000;
+        private readonly Voronoi voronoi;
+        protected Tile[,] array = new Tile[Constants.chunkSize, Constants.chunkSize];
         protected bool isGenerated;
-
-
+        protected SimplexPerlin simplexPerlin;
+        protected int x, y;
 
 
         public Chunk(int x, int y)
@@ -40,33 +37,20 @@ namespace Tiles
 
         public void Generate()
         {
-            for (int i = 0; i < Constants.chunkSize; i++)
-            {
-                for (int j = 0; j < Constants.chunkSize; j++)
-                {
-                    array[i, j] = GenerateTile(j + x, i + y); // array[i, j] = GenerateTile(j + x, i + y);
-                }
-            }
+            for (var i = 0; i < Constants.chunkSize; i++)
+            for (var j = 0; j < Constants.chunkSize; j++)
+                array[i, j] = GenerateTile(j + x, i + y); // array[i, j] = GenerateTile(j + x, i + y);
             isGenerated = true;
         }
 
         private Tile GenerateTile(int x, int y)
         {
-            float z = (simplexPerlin.GetValue(x * Constants.generatorZoom, y * Constants.generatorZoom) + 1) / 2;
+            var z = (simplexPerlin.GetValue(x * Constants.generatorZoom, y * Constants.generatorZoom) + 1) / 2;
 
-            Vector2 vec = new Vector2(x, y);
-            if (z < 0.05)
-            {
-                return new WaterTile(vec);
-            }
-            if (z > 0.05 && z < 0.8)
-            {
-                return new GrassTile(vec);
-            }
-            if (z > 0.8)
-            {
-                return new StoneTile(vec);
-            }
+            var vec = new Vector2(x, y);
+            if (z < 0.05) return new WaterTile(vec);
+            if (z > 0.05 && z < 0.8) return new GrassTile(vec);
+            if (z > 0.8) return new StoneTile(vec);
 
             return new DirtTile(vec);
         }
@@ -75,15 +59,9 @@ namespace Tiles
         public void Render()
         {
             if (IsChunkGenerated())
-            {
-                for (int i = 0; i < Constants.chunkSize; i++)
-                {
-                    for (int j = 0; j < Constants.chunkSize; j++)
-                    {
-                        array[i, j].Render();
-                    }
-                }
-            }
+                for (var i = 0; i < Constants.chunkSize; i++)
+                for (var j = 0; j < Constants.chunkSize; j++)
+                    array[i, j].Render();
         }
 
         public bool IsChunkGenerated()

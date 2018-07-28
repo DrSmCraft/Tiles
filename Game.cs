@@ -8,11 +8,11 @@ namespace Tiles
 {
     public class Game : GameWindow
     {
-        private readonly bool displayRenderFreq = true;
-        private bool displayUpdateFreq = true;
+        public World world;
+        protected bool displayDebug = true;
+        protected Debugger debugger;
         private KeyboardState keyboardState, lastKeyboardState;
         private Vector2 lastPlayerLocation;
-        private readonly World world;
 
 
         public Game() : base((int) Constants.windowSize.X, (int) Constants.windowSize.Y, GraphicsMode.Default,
@@ -21,6 +21,7 @@ namespace Tiles
             world = new World();
             VSync = VSyncMode.On;
             SetupGL();
+            debugger = new Debugger(this);
         }
 
         private void SetupGL()
@@ -56,9 +57,11 @@ namespace Tiles
             world.Render();
             world.GetPlayer().Render();
 
-            if (displayRenderFreq)
+            if (displayDebug)
             {
+                debugger.DisplayInformation();
             }
+
 
             SwapBuffers();
 
@@ -77,15 +80,11 @@ namespace Tiles
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
                 world.GetPlayer().MoveDown();
 
-            Vector2 vec = -1 * (world.GetPlayer().GetLocation() - lastPlayerLocation);
-            Vector3 vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);
+            var vec = -1 * (world.GetPlayer().GetLocation() - lastPlayerLocation);
+            var vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);
             GL.Translate(vec1);
 
-            if (!world.GetChunkAtPlayer().IsChunkGenerated())
-            {
-                world.GenerateChunk(world.GetPlayer().GetLocation());
-            }
-
+            if (!world.GetChunkAtPlayer().IsChunkGenerated()) world.GenerateChunk(world.GetPlayer().GetLocation());
 
 
             lastKeyboardState = keyboardState;
@@ -106,11 +105,9 @@ namespace Tiles
 
         protected void FocusOnChunk(Chunk chunk)
         {
-            int x = (int) (chunk.GetCoord().X * Constants.tileSize);
-            int y = (int) (chunk.GetCoord().Y * Constants.tileSize);
+            var x = (int) (chunk.GetCoord().X * Constants.tileSize);
+            var y = (int) (chunk.GetCoord().Y * Constants.tileSize);
             GL.Ortho(x, y, (int) Constants.windowSize.X + x, (int) Constants.windowSize.Y + y, -1, 1);
         }
-
-
     }
 }

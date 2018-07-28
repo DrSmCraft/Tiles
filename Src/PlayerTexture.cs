@@ -1,7 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using OpenTK.Graphics.OpenGL;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
@@ -9,10 +7,14 @@ namespace Tiles
 {
     public class PlayerTexture : Texture
     {
-        private Bitmap front, back, left, right;
+        private readonly Bitmap front;
+        private readonly Bitmap back;
+        private readonly Bitmap left;
+        private readonly Bitmap right;
         private int frontId, backId, leftId, rightId;
 
-        public PlayerTexture(Bitmap front, int frontId, Bitmap back, int backId, Bitmap left, int leftId, Bitmap right, int rightId) : base(front, frontId)
+        public PlayerTexture(Bitmap front, int frontId, Bitmap back, int backId, Bitmap left, int leftId, Bitmap right,
+            int rightId) : base(front, frontId)
         {
             this.front = front;
             this.back = back;
@@ -25,7 +27,8 @@ namespace Tiles
             this.rightId = rightId;
         }
 
-        public PlayerTexture(string front, int frontId, string back, int backId, string left, int leftId, string right, int rightId) : base(front, frontId)
+        public PlayerTexture(string front, int frontId, string back, int backId, string left, int leftId, string right,
+            int rightId) : base(front, frontId)
         {
             this.front = new Bitmap(front);
             this.back = new Bitmap(back);
@@ -57,7 +60,7 @@ namespace Tiles
 
             front.UnlockBits(data);
         }
-        
+
         public void LoadBack()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -77,7 +80,7 @@ namespace Tiles
 
             back.UnlockBits(data);
         }
-        
+
         public void LoadLeft()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -97,7 +100,7 @@ namespace Tiles
 
             left.UnlockBits(data);
         }
-        
+
         public void Loadright()
         {
             GL.Enable(EnableCap.Texture2D);

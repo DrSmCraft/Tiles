@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Chunk.cs" />
     <Compile Include="Src\Constants.cs" />
+    <Compile Include="Src\Debugger.cs" />
     <Compile Include="Src\Player.cs" />
     <Compile Include="Src\PlayerTexture.cs" />
     <Compile Include="Src\Texture.cs" />

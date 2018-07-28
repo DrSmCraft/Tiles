@@ -32,6 +32,7 @@
       <e p="src" t="Include">
         <e p="Chunk.cs" t="Include" />
         <e p="Constants.cs" t="Include" />
+        <e p="Debugger.cs" t="Include" />
         <e p="Player.cs" t="Include" />
         <e p="PlayerTexture.cs" t="Include" />
         <e p="Texture.cs" t="Include" />

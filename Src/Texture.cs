@@ -46,7 +46,6 @@ namespace Tiles
                 (int) TextureMagFilter.Linear);
 
 
-
             var data = image.LockBits(new Rectangle(0, 0, image.Width, image.Height),
                 ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 

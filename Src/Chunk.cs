@@ -8,10 +8,11 @@ namespace Tiles
 {
     public class Chunk
     {
-        protected readonly int seed = 1000;
+        private int seed = Constants.seed;
         private readonly Voronoi voronoi;
         protected Tile[,] array = new Tile[Constants.chunkSize, Constants.chunkSize];
         protected bool isGenerated;
+        protected bool isPlayerIn; // Is player in this chunk
         protected SimplexPerlin simplexPerlin;
         protected int x, y;
 
@@ -55,10 +56,23 @@ namespace Tiles
             return new DirtTile(vec);
         }
 
+        public bool IsPlayerInChunk()
+        {
+            return isPlayerIn;
+        }
+
+        public void SetPlayerInChunk(Player player)
+        {
+            float playerX = player.GetLocation().X;
+            float playerY = player.GetLocation().Y;
+            isPlayerIn = (playerX >= x && playerX <= x + Constants.tileSize) &&
+                         (playerY >= y && playerY <= y + Constants.tileSize);
+        }
+
 
         public void Render()
         {
-            if (IsChunkGenerated())
+            if (IsChunkGenerated() && IsPlayerInChunk())
                 for (var i = 0; i < Constants.chunkSize; i++)
                 for (var j = 0; j < Constants.chunkSize; j++)
                     array[i, j].Render();
@@ -71,7 +85,7 @@ namespace Tiles
 
         public string GetString()
         {
-            return "Chunk: (" + x + ", " + y + ") " + IsChunkGenerated();
+            return "Chunk: (" + x + ", " + y + ") " + "Is Generated: " + IsChunkGenerated();
         }
     }
 }

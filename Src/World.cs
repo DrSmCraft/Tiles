@@ -5,6 +5,7 @@ namespace Tiles
 {
     public class World
     {
+        protected int seed = Constants.seed;
         protected Chunk[,] chunkArray;
         protected Player player = new Player();
 
@@ -12,7 +13,7 @@ namespace Tiles
         {
             chunkArray = new Chunk[(int) Constants.dim.Y, (int) Constants.dim.X];
             Console.Out.WriteLine(chunkArray);
-            GenerateChunks();
+            CreateChunks();
         }
 
         public void GenerateChunk(int x, int y)
@@ -53,7 +54,7 @@ namespace Tiles
             return player;
         }
 
-        private void GenerateChunks()
+        private void CreateChunks()
         {
             for (var i = 0; i < Constants.dim.Y; i++)
             for (var j = 0; j < Constants.dim.X; j++)
@@ -66,6 +67,17 @@ namespace Tiles
         public Chunk GetChunk(int x, int y)
         {
             return chunkArray[y / Constants.chunkSize, x / Constants.chunkSize];
+        }
+
+        public void SetPlayerInChunk()
+        {
+            for (var i = 0; i < Constants.dim.Y; i++)
+            {
+                for (var j = 0; j < Constants.dim.X; j++)
+                {
+                    chunkArray[i, j].SetPlayerInChunk(player);
+                }
+            }
         }
 
         public int GetAmountChunksGenerated()

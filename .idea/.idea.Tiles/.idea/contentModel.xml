@@ -15,8 +15,10 @@
         <e p="Tiles" t="Include">
           <e p="DirtTile.png" t="Include" />
           <e p="GrassTile.png" t="Include" />
+          <e p="LeavesTile.png" t="Include" />
           <e p="StoneTile.png" t="Include" />
           <e p="WaterTile.png" t="Include" />
+          <e p="WoodTile.png" t="Include" />
         </e>
       </e>
       <e p="bin" t="ExcludeRecursive" />
@@ -39,13 +41,14 @@
         <e p="Tiles" t="Include">
           <e p="DirtTile.cs" t="Include" />
           <e p="GrassTile.cs" t="Include" />
+          <e p="LeavesTile.cs" t="Include" />
           <e p="PlayerTile.cs" t="Include" />
           <e p="StoneTile.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
           <e p="WaterTile.cs" t="Include" />
+          <e p="WoodTile.cs" t="Include" />
         </e>
         <e p="Util" t="Include">
-          <e p="Perlin.cs" t="Include" />
           <e p="Random.cs" t="Include" />
         </e>
         <e p="World.cs" t="Include" />

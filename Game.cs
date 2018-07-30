@@ -8,11 +8,11 @@ namespace Tiles
 {
     public class Game : GameWindow
     {
-        public World world;
-        protected bool displayDebug = true;
         protected Debugger debugger;
+        protected bool displayDebug = true;
         private KeyboardState keyboardState, lastKeyboardState;
         private Vector2 lastPlayerLocation;
+        public World world;
 
 
         public Game() : base((int) Constants.windowSize.X, (int) Constants.windowSize.Y, GraphicsMode.Default,
@@ -22,6 +22,7 @@ namespace Tiles
             VSync = VSyncMode.On;
             SetupGL();
             debugger = new Debugger(this);
+            Console.Out.WriteLine(Constants.baseDirectory);
         }
 
         private void SetupGL()
@@ -57,10 +58,7 @@ namespace Tiles
             world.Render();
             world.GetPlayer().Render();
 
-            if (displayDebug)
-            {
-                debugger.DisplayInformation();
-            }
+            if (displayDebug) debugger.DisplayInformation();
 
 
             SwapBuffers();
@@ -71,7 +69,12 @@ namespace Tiles
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             keyboardState = Keyboard.GetState();
-            if (keyboardState[Key.Escape]) Exit();
+            world.SetPlayerInChunk();
+            if (keyboardState[Key.Escape])
+            {
+                Exit();
+            }
+
             if (keyboardState[Constants.moveLeft] && lastKeyboardState[Constants.moveLeft])
                 world.GetPlayer().MoveLeft();
             if (keyboardState[Constants.moveRight] && lastKeyboardState[Constants.moveRight])
@@ -79,6 +82,10 @@ namespace Tiles
             if (keyboardState[Constants.moveUp] && lastKeyboardState[Constants.moveUp]) world.GetPlayer().MoveUp();
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
                 world.GetPlayer().MoveDown();
+
+
+            if (keyboardState[Key.B] && lastKeyboardState[Key.B] || IsOutsideWindow(world.GetPlayer().GetLocation()))
+                world.GetPlayer().Move(Constants.playerStartPosition);
 
             var vec = -1 * (world.GetPlayer().GetLocation() - lastPlayerLocation);
             var vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);

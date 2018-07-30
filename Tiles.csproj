@@ -56,11 +56,12 @@
     <Compile Include="Src\Texture.cs" />
     <Compile Include="Src\Tiles\GrassTile.cs" />
     <Compile Include="Src\Tiles\DirtTile.cs" />
+    <Compile Include="Src\Tiles\LeavesTile.cs" />
     <Compile Include="Src\Tiles\PlayerTile.cs" />
     <Compile Include="Src\Tiles\StoneTile.cs" />
     <Compile Include="Src\Tiles\Tile.cs" />
     <Compile Include="Src\Tiles\WaterTile.cs" />
-    <Compile Include="Src\Util\Perlin.cs" />
+    <Compile Include="Src\Tiles\WoodTile.cs" />
     <Compile Include="Src\Util\Random.cs" />
     <Compile Include="Src\World.cs" />
   </ItemGroup>
@@ -71,14 +72,36 @@
   <ItemGroup>
     <Content Include="Assets\Player\Charecter.png" />
     <Content Include="Assets\Player\Layer 1.png" />
-    <Content Include="Assets\Player\PlayerBack.png" />
-    <Content Include="Assets\Player\PlayerFront.png" />
-    <Content Include="Assets\Player\PlayerLeft.png" />
-    <Content Include="Assets\Player\PlayerRight.png" />
-    <Content Include="Assets\Tiles\DirtTile.png" />
-    <Content Include="Assets\Tiles\GrassTile.png" />
-    <Content Include="Assets\Tiles\StoneTile.png" />
-    <Content Include="Assets\Tiles\WaterTile.png" />
+    <Resource Include="Assets\Player\PlayerBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Player\PlayerFront.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Player\PlayerLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Player\PlayerRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\DirtTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\GrassTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\LeavesTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\StoneTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\WaterTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Tiles\WoodTile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,8 +5,9 @@ namespace Tiles.Tiles
 {
     public class PlayerTile : Tile
     {
-        private PlayerTexture tex;
+        private readonly PlayerTexture tex;
         private Player.PlayerFacing facing;
+
         public PlayerTile(Vector2 location, PlayerTexture tex) : base(location, Constants.playerColor)
         {
             this.tex = tex;
@@ -31,6 +32,11 @@ namespace Tiles.Tiles
             };
         }
 
+        public void Move(Vector2 vec)
+        {
+            location = vec;
+        }
+
         public Player.PlayerFacing GetFacing()
         {
             return facing;
@@ -43,22 +49,14 @@ namespace Tiles.Tiles
 
         public override void Render()
         {
-            if(facing == Player.PlayerFacing.Front)
-            {
+            if (facing == Player.PlayerFacing.Front)
                 tex.LoadFront();
-            }
-            else if(facing == Player.PlayerFacing.Back)
-            {
+            else if (facing == Player.PlayerFacing.Back)
                 tex.LoadBack();
-            }
-            else if(facing == Player.PlayerFacing.Left)
-            {
+            else if (facing == Player.PlayerFacing.Left)
                 tex.LoadLeft();
-            }
-            else if(facing == Player.PlayerFacing.Right)
-            {
+            else if (facing == Player.PlayerFacing.Right)
                 tex.Loadright();
-            }
 
 
 //            if (!drawTexture)
@@ -79,20 +77,20 @@ namespace Tiles.Tiles
 //            }
 //            else
 //            {
-                GL.Begin(PrimitiveType.Quads);
+            GL.Begin(PrimitiveType.Quads);
 //                GL.Color3(color);
-                GL.TexCoord2(0, 1);
-                GL.Vertex2(vertcies[0]);
+            GL.TexCoord2(0, 1);
+            GL.Vertex2(vertcies[0]);
 
-                GL.TexCoord2(1, 1);
-                GL.Vertex2(vertcies[1]);
+            GL.TexCoord2(1, 1);
+            GL.Vertex2(vertcies[1]);
 
-                GL.TexCoord2(1, 0);
-                GL.Vertex2(vertcies[2]);
+            GL.TexCoord2(1, 0);
+            GL.Vertex2(vertcies[2]);
 
-                GL.TexCoord2(0, 0);
-                GL.Vertex2(vertcies[3]);
-                GL.End();
+            GL.TexCoord2(0, 0);
+            GL.Vertex2(vertcies[3]);
+            GL.End();
 //            }
         }
     }

@@ -7,8 +7,8 @@ namespace Tiles
 {
     public class PlayerTexture : Texture
     {
-        private readonly Bitmap front;
         private readonly Bitmap back;
+        private readonly Bitmap front;
         private readonly Bitmap left;
         private readonly Bitmap right;
         private int frontId, backId, leftId, rightId;

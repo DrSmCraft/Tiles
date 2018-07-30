@@ -1,5 +1,4 @@
-﻿using System;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
@@ -122,7 +121,6 @@ namespace Tiles.Tiles
                 GL.Vertex2(vertcies[3]);
                 GL.End();
                 GL.Color3(new Vector3(1f, 1f, 1f));
-
             }
         }
 

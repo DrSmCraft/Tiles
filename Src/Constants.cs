@@ -1,24 +1,32 @@
-﻿using OpenTK;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using OpenTK;
 using OpenTK.Input;
 
 namespace Tiles
 {
     public class Constants
     {
-        public static float tileSize = 100f;
-        public static int chunkSize = 10;
-        public static Vector2 dim = new Vector2(100, 100);
-        public static Vector2 dimVisible = new Vector2(10, 10);
+        public static string baseDirectory = AppContext.BaseDirectory;
 
-        public static Vector2 windowSize = new Vector2(dimVisible.X * tileSize, dimVisible.Y * tileSize);
+        public static float tileSize = 100f; // tile size in pixels
+        public static int chunkSize = 10; // chunk size in tiles
+        public static Vector2 dim = new Vector2(100, 100); // Full dimenstions of map
+
+        public static Vector2 windowSize = new Vector2(chunkSize * tileSize, chunkSize * tileSize);
 //        public static Vector2 windowSize = new Vector2(800, 600);
 
+        // Terrian Generator Constants
+        public  static int seed = 1000;
         public static float generatorZoom = 0.1f;
+        public static float biomeGeneratorZoom = 0.01f;
+
 
         // Player Constants
         public static Vector3 playerColor = new Vector3(1f, 0, 0);
         public static float playerMoveAmount = 0.1f;
-        public static float playerSize = 100f;
+        public static float playerSize = tileSize;
         public static Vector2 playerStartPosition = new Vector2(chunkSize / 2, chunkSize / 2);
 
         public static PlayerTexture playerTexture = new PlayerTexture(
@@ -53,5 +61,9 @@ namespace Tiles
 
         public static Texture dirtTexture =
             new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\DirtTile.png", 4);
+        public static Texture woodTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\WoodTile.png", 5);
+        public static Texture leavesTexture =
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\LeavesTile.png", 6);
     }
 }

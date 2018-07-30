@@ -19,9 +19,10 @@ namespace Tiles
             Right
         }
 
+        private readonly int health;
+
         private readonly PlayerTile playerTile;
         private PlayerAction action;
-        private readonly int health;
 
         // Website used to generate charecter sprite
         // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
@@ -45,6 +46,12 @@ namespace Tiles
         {
             location += moveVector;
             playerTile.Translate(moveVector);
+        }
+
+        public void Move(Vector2 vec)
+        {
+            location = vec;
+            playerTile.Move(vec);
         }
 
         public void MoveUp()

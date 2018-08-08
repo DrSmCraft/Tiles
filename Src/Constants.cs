@@ -13,6 +13,7 @@ namespace Tiles
         public static float tileSize = 100f; // tile size in pixels
         public static int chunkSize = 10; // chunk size in tiles
         public static Vector2 dim = new Vector2(100, 100); // Full dimenstions of map
+        public static int chunksVisable = 1;
 
         public static Vector2 windowSize = new Vector2(chunkSize * tileSize, chunkSize * tileSize);
 //        public static Vector2 windowSize = new Vector2(800, 600);
@@ -28,12 +29,20 @@ namespace Tiles
         public static float playerMoveAmount = 0.1f;
         public static float playerSize = tileSize;
         public static Vector2 playerStartPosition = new Vector2(chunkSize / 2, chunkSize / 2);
+        public static double attackDelay = 0.1;
 
+        // Website used to generate charecter sprite
+        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
+        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#?clothes=longsleeve_brown&legs=pants_teal&mail=chain&nose=straight&ears=big&shoes=boots_golden&weapon=none&hair=plain_dark_blonde&belt=leather&hat=cap_leather
         public static PlayerTexture playerTexture = new PlayerTexture(
-            "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerFront.png", 100,
-            "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerBack.png", 101,
-            "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerLeft.png", 102,
-            "C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerRight.png", 103);
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerFront.png", 100),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerBack.png", 101),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerLeft.png", 102),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\PlayerRight.png", 103),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\AttackFront.png", 104),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\AttackBack.png", 105),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\AttackLeft.png", 106),
+            new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Player\\AttackRight.png", 107));
 
         // Keyboard Constants
         public static Key moveLeft = Key.A;
@@ -47,6 +56,8 @@ namespace Tiles
         public static Vector3 stoneColor = new Vector3(0.5f, 0.5f, 0.5f);
         public static Vector3 waterColor = new Vector3(0, 0, 1f);
         public static Vector3 pathColor = new Vector3(.5f, .2f, 0f);
+
+        public static float treeGenerationFreq = 0.01f;
 
 
         // Texture Constants
@@ -65,5 +76,7 @@ namespace Tiles
             new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\WoodTile.png", 5);
         public static Texture leavesTexture =
             new Texture("C:\\Users\\Notebook\\Desktop\\Tiles\\Assets\\Tiles\\LeavesTile.png", 6);
+
+        public static Texture treeTexture = new Texture(@"C:\Users\Notebook\Desktop\Tiles\Assets\Structures\TreeStructure.png", 50);
     }
 }

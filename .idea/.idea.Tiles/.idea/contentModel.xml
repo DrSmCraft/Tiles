@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Notebook\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_Tiles.895842522.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Notebook\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_Tiles.895842522.00" t="ExcludeRecursive" />
     <e p="C:\Users\Notebook\Desktop\Tiles" t="IncludeRecursive">
       <e p="Assets" t="Include">
         <e p="Player" t="Include">
-          <e p="Charecter.png" t="Include" />
+          <e p="Attack.png" t="Include" />
+          <e p="AttackBack.png" t="Include" />
+          <e p="AttackFront.png" t="Include" />
+          <e p="AttackLeft.png" t="Include" />
+          <e p="AttackRight.png" t="Include" />
+          <e p="character.png" t="Include" />
           <e p="Layer 1.png" t="Include" />
           <e p="PlayerBack.png" t="Include" />
           <e p="PlayerFront.png" t="Include" />
           <e p="PlayerLeft.png" t="Include" />
           <e p="PlayerRight.png" t="Include" />
+          <e p="Walking.png" t="Include" />
+          <e p="WalkingBack.png" t="Include" />
+          <e p="WalkingFront.png" t="Include" />
+          <e p="WalkingLeft.png" t="Include" />
+          <e p="WalkingRight.png" t="Include" />
+        </e>
+        <e p="Structures" t="Include">
+          <e p="TreeStructure.png" t="Include" />
         </e>
         <e p="Tiles" t="Include">
           <e p="DirtTile.png" t="Include" />
@@ -37,6 +50,10 @@
         <e p="Debugger.cs" t="Include" />
         <e p="Player.cs" t="Include" />
         <e p="PlayerTexture.cs" t="Include" />
+        <e p="Structures" t="Include">
+          <e p="Structure.cs" t="Include" />
+          <e p="TreeStructure.cs" t="Include" />
+        </e>
         <e p="Texture.cs" t="Include" />
         <e p="Tiles" t="Include">
           <e p="DirtTile.cs" t="Include" />

@@ -7,11 +7,13 @@ namespace Tiles
     {
         protected int seed = Constants.seed;
         protected Chunk[,] chunkArray;
-        protected Player player = new Player();
+        protected Chunk[] renderBuffer;
+        public Player player = new Player();
 
         public World()
         {
             chunkArray = new Chunk[(int) Constants.dim.Y, (int) Constants.dim.X];
+            renderBuffer = new Chunk[Constants.chunksVisable];
             Console.Out.WriteLine(chunkArray);
             CreateChunks();
         }
@@ -90,11 +92,17 @@ namespace Tiles
             return amount;
         }
 
+        public void Update()
+        {
+            renderBuffer[0] = GetChunkAtPlayer();
+        }
+
         public void Render()
         {
-            for (var i = 0; i < Constants.dim.Y; i++)
-            for (var j = 0; j < Constants.dim.X; j++)
-                chunkArray[i, j].Render();
+            foreach (Chunk chunk in renderBuffer)
+            {
+                chunk.Render();
+            }
         }
     }
 }

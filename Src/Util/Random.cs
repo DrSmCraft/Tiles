@@ -1,11 +1,26 @@
-﻿namespace Tiles.Util
+﻿using System;
+
+namespace Tiles.Util
 {
-    public class Random
+    public class TilesRandom
     {
-        public static object RandomObject(params object[] list)
+        private int seed;
+        private Random rand;
+
+        public TilesRandom(int seed)
         {
-            var rand = new System.Random();
+            this.seed = seed;
+            rand = new Random(seed);
+        }
+
+        public object RandomObject(params object[] list)
+        {
             return list[rand.Next(0, list.Length)];
+        }
+
+        public bool RandomByChance(float chance)
+        {
+            return rand.Next(100) <= chance * 100;
         }
     }
 }

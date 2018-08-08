@@ -53,6 +53,8 @@
     <Compile Include="Src\Debugger.cs" />
     <Compile Include="Src\Player.cs" />
     <Compile Include="Src\PlayerTexture.cs" />
+    <Compile Include="Src\Structures\Structure.cs" />
+    <Compile Include="Src\Structures\TreeStructure.cs" />
     <Compile Include="Src\Texture.cs" />
     <Compile Include="Src\Tiles\GrassTile.cs" />
     <Compile Include="Src\Tiles\DirtTile.cs" />
@@ -70,8 +72,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Player\Charecter.png" />
+    <Content Include="Assets\Player\Attack.png" />
+    <Content Include="Assets\Player\AttackBack.png" />
+    <Content Include="Assets\Player\AttackFront.png" />
+    <Content Include="Assets\Player\AttackLeft.png" />
+    <Content Include="Assets\Player\AttackRight.png" />
+    <Content Include="Assets\Player\Character.png" />
     <Content Include="Assets\Player\Layer 1.png" />
+    <Content Include="Assets\Player\Walking.png" />
+    <Content Include="Assets\Player\WalkingBack.png" />
+    <Content Include="Assets\Player\WalkingFront.png" />
+    <Content Include="Assets\Player\WalkingLeft.png" />
+    <Content Include="Assets\Player\WalkingRight.png" />
+    <Content Include="Assets\Structures\TreeStructure.png" />
     <Resource Include="Assets\Player\PlayerBack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

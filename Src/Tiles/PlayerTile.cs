@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using System;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
@@ -7,6 +8,7 @@ namespace Tiles.Tiles
     {
         private readonly PlayerTexture tex;
         private Player.PlayerFacing facing;
+        private Player.PlayerAction action;
 
         public PlayerTile(Vector2 location, PlayerTexture tex) : base(location, Constants.playerColor)
         {
@@ -19,6 +21,11 @@ namespace Tiles.Tiles
                 new Vector2(location.X * Constants.playerSize, (location.Y + 1) * Constants.playerSize)
             };
         }
+
+
+
+
+
 
         public override void Translate(Vector2 moveVector)
         {
@@ -47,16 +54,15 @@ namespace Tiles.Tiles
             this.facing = facing;
         }
 
+        public void SetAction(Player.PlayerAction action)
+        {
+            this.action = action;
+        }
+
         public override void Render()
         {
-            if (facing == Player.PlayerFacing.Front)
-                tex.LoadFront();
-            else if (facing == Player.PlayerFacing.Back)
-                tex.LoadBack();
-            else if (facing == Player.PlayerFacing.Left)
-                tex.LoadLeft();
-            else if (facing == Player.PlayerFacing.Right)
-                tex.Loadright();
+                tex.Load(action, facing);
+
 
 
 //            if (!drawTexture)

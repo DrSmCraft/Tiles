@@ -1,8 +1,11 @@
-﻿using LibNoise;
+﻿using System;
+using LibNoise;
 using LibNoise.Filter;
 using LibNoise.Primitive;
 using OpenTK;
 using Tiles.Tiles;
+using Tiles.Structures;
+using Tiles.Util;
 
 namespace Tiles
 {
@@ -11,6 +14,8 @@ namespace Tiles
         private int seed = Constants.seed;
         private readonly Voronoi voronoi;
         protected Tile[,] array = new Tile[Constants.chunkSize, Constants.chunkSize];
+        protected Structure[,] structureArray = new Structure[Constants.chunkSize, Constants.chunkSize];
+        protected TilesRandom random = new TilesRandom(Constants.seed);
         protected bool isGenerated;
         protected bool isPlayerIn; // Is player in this chunk
         protected SimplexPerlin simplexPerlin;
@@ -40,7 +45,11 @@ namespace Tiles
         {
             for (var i = 0; i < Constants.chunkSize; i++)
             for (var j = 0; j < Constants.chunkSize; j++)
+            {
                 array[i, j] = GenerateTile(j + x, i + y); // array[i, j] = GenerateTile(j + x, i + y);
+//                structureArray[i, j] = GenerateStructure(j + x, i + y);
+            }
+
             isGenerated = true;
         }
 
@@ -54,6 +63,19 @@ namespace Tiles
             if (z > 0.8) return new StoneTile(vec);
 
             return new DirtTile(vec);
+        }
+
+        private Structure GenerateStructure(int x, int y)
+        {
+            if (array[y, x] is GrassTile)
+            {
+                if(random.RandomByChance(Constants.treeGenerationFreq))
+                {
+                    return new TreeStructure(new Vector2(x, y));
+                }
+            }
+
+            return null;
         }
 
         public bool IsPlayerInChunk()
@@ -74,8 +96,21 @@ namespace Tiles
         {
             if (IsChunkGenerated() && IsPlayerInChunk())
                 for (var i = 0; i < Constants.chunkSize; i++)
-                for (var j = 0; j < Constants.chunkSize; j++)
-                    array[i, j].Render();
+                {
+                    for (var j = 0; j < Constants.chunkSize; j++)
+                    {
+                        array[i, j].Render();
+                        try
+                        {
+                            structureArray[i, j].Render();
+                        }
+                        catch (Exception e)
+                        {
+//                            Console.WriteLine(e);
+                        }
+                    }
+                }
+
         }
 
         public bool IsChunkGenerated()

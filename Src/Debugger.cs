@@ -6,10 +6,11 @@ namespace Tiles
     {
         public int amountChunksGenerated;
         private readonly Game game;
-        public float gameTime;
+        public DateTime gameTime;
         public float renderFreq;
         public float updateFreq;
         public Chunk chunkPlayerIsIn;
+        public DateTime startTime;
         public double garbage1, garbage2, garbage3;
 
         public Debugger(Game game)
@@ -26,8 +27,10 @@ namespace Tiles
 
         public void Update()
         {
+            startTime = game.startTime;
             renderFreq = (float) game.RenderFrequency;
             updateFreq = (float) game.UpdateFrequency;
+            gameTime = game.time;
             amountChunksGenerated = game.world.GetAmountChunksGenerated();
             chunkPlayerIsIn = game.world.GetChunkAtPlayer();
             garbage1 = GC.CollectionCount(1);
@@ -38,7 +41,7 @@ namespace Tiles
         public string GetDataAsString()
         {
             Update();
-            return "-------------DEBUG-------------\n" + "Render Frequency: " + renderFreq + "\nUpdate Frequency: " +
+            return "-------------DEBUG-------------\n" + "Start Time: " + startTime.ToString() + "\nTime: " + gameTime.ToString() + "\nRender Frequency: " + renderFreq + "\nUpdate Frequency: " +
                    updateFreq + "\nNumber of Chunks Generated: " + amountChunksGenerated + "\nChunkPlayerIsIn: " +
                    chunkPlayerIsIn.GetString() + "\nGarbage 1: " + garbage1 + "\nGarbage 2: " + garbage2 +
                    "\nGarbage 3: " + garbage3;

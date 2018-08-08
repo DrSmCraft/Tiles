@@ -7,8 +7,8 @@ namespace Tiles
     {
         public enum PlayerAction
         {
-            None,
-            Hurting
+            Attacking,
+            Walking
         }
 
         public enum PlayerFacing
@@ -21,12 +21,10 @@ namespace Tiles
 
         private readonly int health;
 
-        private readonly PlayerTile playerTile;
+        private PlayerTile playerTile;
         private PlayerAction action;
 
-        // Website used to generate charecter sprite
-        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
-        // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#?clothes=longsleeve_brown&legs=pants_teal&mail=chain&nose=straight&ears=big&shoes=boots_golden&weapon=none&hair=plain_dark_blonde&belt=leather&hat=cap_leather
+
         private Vector2 location;
         private PlayerFacing playerFacing;
 
@@ -35,6 +33,7 @@ namespace Tiles
             location = new Vector2(0, 0);
             health = 10;
             playerTile = new PlayerTile(location, Constants.playerTexture);
+
         }
 
         public Vector2 GetLocation()
@@ -44,43 +43,55 @@ namespace Tiles
 
         public void Translate(Vector2 moveVector)
         {
+            action = PlayerAction.Walking;
             location += moveVector;
             playerTile.Translate(moveVector);
         }
 
         public void Move(Vector2 vec)
         {
+            action = PlayerAction.Walking;
             location = vec;
             playerTile.Move(vec);
         }
 
         public void MoveUp()
         {
+            action = PlayerAction.Walking;
             playerFacing = PlayerFacing.Back;
             playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
             Translate(new Vector2(0, Constants.playerMoveAmount));
         }
 
         public void MoveDown()
         {
+            action = PlayerAction.Walking;
             playerFacing = PlayerFacing.Front;
             playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
             Translate(new Vector2(0, -Constants.playerMoveAmount));
         }
 
         public void MoveLeft()
         {
+            action = PlayerAction.Walking;
             playerFacing = PlayerFacing.Left;
             playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
             Translate(new Vector2(-Constants.playerMoveAmount, 0));
         }
 
         public void MoveRight()
         {
+            action = PlayerAction.Walking;
             playerFacing = PlayerFacing.Right;
             playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
             Translate(new Vector2(Constants.playerMoveAmount, 0));
         }
+
+
 
         public int GetHealth()
         {
@@ -92,13 +103,30 @@ namespace Tiles
             return playerFacing;
         }
 
+        public void Attack()
+        {
+            action = PlayerAction.Attacking;
+        }
+
         public void SetFacing(PlayerFacing facing)
         {
             playerFacing = facing;
         }
 
+        public void SetAction(PlayerAction playerAction)
+        {
+            action = playerAction;
+        }
+
+        public PlayerAction GetAction()
+        {
+            return action;
+        }
+
         public void Render()
         {
+            playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
             playerTile.Render();
         }
     }

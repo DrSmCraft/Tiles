@@ -6,7 +6,7 @@ namespace Tiles.Tiles
     public class Tile
     {
         protected Vector3 color;
-        protected bool drawTexture;
+        public bool drawTexture;
         protected Vector2 location;
         private float size = Constants.tileSize;
         protected Texture tex;
@@ -50,6 +50,16 @@ namespace Tiles.Tiles
         public Vector3 GetColor()
         {
             return color;
+        }
+
+        public void SetColor(Vector3 vec)
+        {
+            color = vec;
+        }
+
+        public void SetColor(float r, float g, float b)
+        {
+            color = new Vector3(r, g, b);
         }
 
         public virtual void Translate(Vector2 moveVector)

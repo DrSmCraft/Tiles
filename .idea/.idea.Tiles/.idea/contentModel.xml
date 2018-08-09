@@ -1,76 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Notebook\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_Tiles.895842522.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Notebook\Desktop\Tiles" t="IncludeRecursive">
-      <e p="Assets" t="Include">
-        <e p="Player" t="Include">
-          <e p="Attack.png" t="Include" />
-          <e p="AttackBack.png" t="Include" />
-          <e p="AttackFront.png" t="Include" />
-          <e p="AttackLeft.png" t="Include" />
-          <e p="AttackRight.png" t="Include" />
-          <e p="character.png" t="Include" />
-          <e p="Layer 1.png" t="Include" />
-          <e p="PlayerBack.png" t="Include" />
-          <e p="PlayerFront.png" t="Include" />
-          <e p="PlayerLeft.png" t="Include" />
-          <e p="PlayerRight.png" t="Include" />
-          <e p="Walking.png" t="Include" />
-          <e p="WalkingBack.png" t="Include" />
-          <e p="WalkingFront.png" t="Include" />
-          <e p="WalkingLeft.png" t="Include" />
-          <e p="WalkingRight.png" t="Include" />
-        </e>
-        <e p="Structures" t="Include">
-          <e p="TreeStructure.png" t="Include" />
-        </e>
-        <e p="Tiles" t="Include">
-          <e p="DirtTile.png" t="Include" />
-          <e p="GrassTile.png" t="Include" />
-          <e p="LeavesTile.png" t="Include" />
-          <e p="StoneTile.png" t="Include" />
-          <e p="WaterTile.png" t="Include" />
-          <e p="WoodTile.png" t="Include" />
-        </e>
-      </e>
-      <e p="bin" t="ExcludeRecursive" />
-      <e p="Game.cs" t="Include" />
-      <e p="obj" t="ExcludeRecursive" />
-      <e p="OpenTK.dll.config" t="Include" />
+    <e p="C:\Users\Notebook\.Rider2018.1\system\resharper-host\Local\Transient\ReSharperHost\v12\SolutionCaches\_Tiles.895842522.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Notebook\Desktop\Tiles" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
-      <e p="packages.config" t="Include" />
-      <e p="Program.cs" t="Include" />
-      <e p="Properties" t="Include">
-        <e p="AssemblyInfo.cs" t="Include" />
+      <e p="Tiles" t="IncludeRecursive">
+        <e p="Assets" t="Include">
+          <e p="Player" t="Include">
+            <e p="Attack.png" t="Include" />
+            <e p="AttackBack.png" t="Include" />
+            <e p="AttackFront.png" t="Include" />
+            <e p="AttackLeft.png" t="Include" />
+            <e p="AttackRight.png" t="Include" />
+            <e p="Character.png" t="Include" />
+            <e p="Layer 1.png" t="Include" />
+            <e p="PlayerBack.png" t="Include" />
+            <e p="PlayerFront.png" t="Include" />
+            <e p="PlayerLeft.png" t="Include" />
+            <e p="PlayerRight.png" t="Include" />
+            <e p="Walking.png" t="Include" />
+            <e p="WalkingBack.png" t="Include" />
+            <e p="WalkingFront.png" t="Include" />
+            <e p="WalkingLeft.png" t="Include" />
+            <e p="WalkingRight.png" t="Include" />
+          </e>
+          <e p="Structures" t="Include">
+            <e p="TreeStructure.png" t="Include" />
+          </e>
+          <e p="Tiles" t="Include">
+            <e p="DirtTile.png" t="Include" />
+            <e p="DirtTile.psd" t="Include" />
+            <e p="GrassTile.png" t="Include" />
+            <e p="GrassTile.psd" t="Include" />
+            <e p="LeavesTile.png" t="Include" />
+            <e p="LeavesTile.psd" t="Include" />
+            <e p="StoneTile.png" t="Include" />
+            <e p="StoneTile.psd" t="Include" />
+            <e p="WaterTile.png" t="Include" />
+            <e p="WaterTile.psd" t="Include" />
+            <e p="WoodTile.png" t="Include" />
+            <e p="WoodTile.psd" t="Include" />
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Game.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="OpenTK.dll.config" t="Include" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Src" t="Include">
+          <e p="Chunk.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
+          <e p="Debugger.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="PlayerTexture.cs" t="Include" />
+          <e p="Structures" t="Include">
+            <e p="Structure.cs" t="Include" />
+            <e p="TreeStructure.cs" t="Include" />
+          </e>
+          <e p="Texture.cs" t="Include" />
+          <e p="Tiles" t="Include">
+            <e p="DirtTile.cs" t="Include" />
+            <e p="GrassTile.cs" t="Include" />
+            <e p="LeavesTile.cs" t="Include" />
+            <e p="PlayerTile.cs" t="Include" />
+            <e p="StoneTile.cs" t="Include" />
+            <e p="Tile.cs" t="Include" />
+            <e p="WaterTile.cs" t="Include" />
+            <e p="WoodTile.cs" t="Include" />
+          </e>
+          <e p="Util" t="Include">
+            <e p="Random.cs" t="Include" />
+          </e>
+          <e p="World.cs" t="Include" />
+        </e>
+        <e p="Tiles.csproj" t="IncludeRecursive" />
       </e>
-      <e p="src" t="Include">
-        <e p="Chunk.cs" t="Include" />
-        <e p="Constants.cs" t="Include" />
-        <e p="Debugger.cs" t="Include" />
-        <e p="Player.cs" t="Include" />
-        <e p="PlayerTexture.cs" t="Include" />
-        <e p="Structures" t="Include">
-          <e p="Structure.cs" t="Include" />
-          <e p="TreeStructure.cs" t="Include" />
-        </e>
-        <e p="Texture.cs" t="Include" />
-        <e p="Tiles" t="Include">
-          <e p="DirtTile.cs" t="Include" />
-          <e p="GrassTile.cs" t="Include" />
-          <e p="LeavesTile.cs" t="Include" />
-          <e p="PlayerTile.cs" t="Include" />
-          <e p="StoneTile.cs" t="Include" />
-          <e p="Tile.cs" t="Include" />
-          <e p="WaterTile.cs" t="Include" />
-          <e p="WoodTile.cs" t="Include" />
-        </e>
-        <e p="Util" t="Include">
-          <e p="Random.cs" t="Include" />
-        </e>
-        <e p="World.cs" t="Include" />
-      </e>
-      <e p="Tiles.csproj" t="IncludeRecursive" />
       <e p="Tiles.sln" t="IncludeFlat" />
     </e>
   </component>

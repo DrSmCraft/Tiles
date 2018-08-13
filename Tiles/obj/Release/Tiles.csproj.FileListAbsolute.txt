@@ -1,0 +1,17 @@
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Tiles.exe
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Tiles.pdb
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\LibNoise.dll
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.dll
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\LibNoise.xml
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.pdb
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.xml
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csprojAssemblyReference.cache
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csproj.CoreCompileInputs.cache
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csproj.CopyComplete
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.exe
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.pdb
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Tiles.exe.config
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Properties\Resources.resx
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Properties\Resources.Designer.cs
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.Properties.Resources.resources
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csproj.GenerateResource.cache

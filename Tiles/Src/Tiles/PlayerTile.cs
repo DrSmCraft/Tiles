@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using System.Drawing;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
@@ -54,31 +55,43 @@ namespace Tiles.Tiles
             this.action = action;
         }
 
-        public override void Render()
+        public override void Render(bool bounderies = false)
+        {
+
+
+
+            if (bounderies)
+            {
+                GL.LineWidth(Constants.tileDebugLineThickness);
+                GL.Begin(PrimitiveType.LineLoop);
+                GL.Color3(Constants.playerDebugColor);
+                GL.Vertex2(vertcies[0]);
+
+                GL.Vertex2(vertcies[1]);
+
+                GL.Vertex2(vertcies[2]);
+
+                GL.Vertex2(vertcies[3]);
+                GL.End();
+
+                RenderTexture();
+
+
+            }
+            else
+            {
+                RenderTexture();
+            }
+            GL.Color3(new Vector3(1f, 1f, 1f));
+
+        }
+
+        public void RenderTexture()
         {
             tex.Load(action, facing);
 
 
-//            if (!drawTexture)
-//            {
-//                GL.Begin(PrimitiveType.Quads);
-//                GL.Color3(color);
-//                GL.Vertex2(vertcies[0]);
-//
-//                GL.Color3(color);
-//                GL.Vertex2(vertcies[1]);
-//
-//                GL.Color3(color);
-//                GL.Vertex2(vertcies[2]);
-//
-//                GL.Color3(color);
-//                GL.Vertex2(vertcies[3]);
-//                GL.End();
-//            }
-//            else
-//            {
             GL.Begin(PrimitiveType.Quads);
-//                GL.Color3(color);
             GL.TexCoord2(0, 1);
             GL.Vertex2(vertcies[0]);
 
@@ -91,7 +104,8 @@ namespace Tiles.Tiles
             GL.TexCoord2(0, 0);
             GL.Vertex2(vertcies[3]);
             GL.End();
-//            }
+            GL.Color3(new Vector3(1f, 1f, 1f));
+
         }
     }
 }

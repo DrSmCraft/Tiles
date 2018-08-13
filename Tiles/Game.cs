@@ -22,7 +22,6 @@ namespace Tiles
         public Game() : base((int) Constants.windowSize.X, (int) Constants.windowSize.Y, GraphicsMode.Default,
             "Tiles Game")
         {
-
             startTime = DateTime.Now;
             time = DateTime.Now;
             
@@ -62,15 +61,15 @@ namespace Tiles
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 
-            world.Render();
-            world.player.Render();
+            world.Render(displayDebug);
+            world.player.Render(displayDebug);
 
             if (displayDebug) debugger.DisplayInformation();
 
 
             SwapBuffers();
 
-//            base.OnRenderFrame(e);
+            base.OnRenderFrame(e);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -80,7 +79,13 @@ namespace Tiles
             keyboardState = Keyboard.GetState();
             world.SetPlayerInChunk();
             world.Update();
+
             if (keyboardState[Key.Escape]) Exit();
+
+            if (keyboardState[Constants.debug] || lastKeyboardState[Constants.debug])
+            {
+                displayDebug = !displayDebug;
+            }
 
             if (keyboardState[Constants.moveLeft] && lastKeyboardState[Constants.moveLeft])
                 world.player.MoveLeft();
@@ -91,7 +96,7 @@ namespace Tiles
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
                 world.player.MoveDown();
 
-            if (mouseState[MouseButton.Left])
+            if (mouseState[Constants.attackKey])
             {
                 attackTime = time;
                 world.player.Attack();
@@ -106,6 +111,7 @@ namespace Tiles
 
             var vec = -1 * (world.player.GetLocation() - lastPlayerLocation);
             var vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);
+//            Console.Out.WriteLine(vec + "                " + vec1);
             GL.Translate(vec1);
 
             if (!world.GetChunkAtPlayer().IsChunkGenerated()) world.GenerateChunk(world.player.GetLocation());
@@ -114,7 +120,7 @@ namespace Tiles
             lastKeyboardState = keyboardState;
             lastPlayerLocation = world.player.GetLocation();
 
-//            base.OnUpdateFrame(e);
+            base.OnUpdateFrame(e);
         }
 
         protected bool IsOutsideWindow(Vector2 vec)
@@ -134,10 +140,10 @@ namespace Tiles
             GL.Ortho(x, y, (int) Constants.windowSize.X + x, (int) Constants.windowSize.Y + y, -1, 1);
         }
 
-        private bool CheckElapsedTimeSeconds(DateTime t, double seconds)
+        private bool CheckElapsedTimeSeconds(DateTime t, double milliseconds)
         {
-            var ti = t.AddSeconds(seconds);
-            if (time.Second > ti.Second) return true;
+            var ti = t.AddMilliseconds(milliseconds);
+            if (time.Millisecond > ti.Millisecond) return true;
 
             return false;
         }

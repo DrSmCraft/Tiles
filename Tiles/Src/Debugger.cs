@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenTK;
 
 namespace Tiles
 {
@@ -12,6 +13,10 @@ namespace Tiles
         public float renderFreq;
         public DateTime startTime;
         public float updateFreq;
+        public Player player;
+        public Vector2 playerLoc;
+        public Player.PlayerAction playerAction;
+        public Player.PlayerFacing playerFacing;
 
         public Debugger(Game game)
         {
@@ -33,6 +38,10 @@ namespace Tiles
             gameTime = game.time;
             amountChunksGenerated = game.world.GetAmountChunksGenerated();
             chunkPlayerIsIn = game.world.GetChunkAtPlayer();
+            player = game.world.player;
+            playerLoc = player.GetLocation();
+            playerAction = player.GetAction();
+            playerFacing = player.GetFacing();
             garbage1 = GC.CollectionCount(1);
             garbage2 = GC.CollectionCount(2);
             garbage3 = GC.CollectionCount(3);
@@ -43,8 +52,8 @@ namespace Tiles
             Update();
             return "-------------DEBUG-------------\n" + "Start Time: " + startTime + "\nTime: " + gameTime +
                    "\nRender Frequency: " + renderFreq + "\nUpdate Frequency: " +
-                   updateFreq + "\nNumber of Chunks Generated: " + amountChunksGenerated + "\nChunkPlayerIsIn: " +
-                   chunkPlayerIsIn.GetString() + "\nGarbage 1: " + garbage1 + "\nGarbage 2: " + garbage2 +
+                   updateFreq + "\nNumber of Chunks Generated: " + amountChunksGenerated + "\nPlayer Location: " + playerLoc + "\nChunkPlayerIsIn: " +
+                   chunkPlayerIsIn.GetString() + "\nPlayer Action: " + playerAction + "\nPlayer Facing: " + playerFacing + "\nGarbage 1: " + garbage1 + "\nGarbage 2: " + garbage2 +
                    "\nGarbage 3: " + garbage3;
         }
     }

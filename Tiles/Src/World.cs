@@ -45,8 +45,8 @@ namespace Tiles
 
         public Chunk GetChunkAtPlayer()
         {
-            return chunkArray[(int) player.GetLocation().Y / Constants.chunkSize,
-                (int) player.GetLocation().X / Constants.chunkSize];
+            return chunkArray[(int) (player.GetLocation().Y / Constants.chunkSize),
+                (int) (player.GetLocation().X / Constants.chunkSize)];
         }
 
 
@@ -92,9 +92,21 @@ namespace Tiles
             renderBuffer[0] = GetChunkAtPlayer();
         }
 
-        public void Render()
+        public void Render(bool bounderies = false)
         {
-            foreach (var chunk in renderBuffer) chunk.Render();
+
+                foreach (var chunk in renderBuffer)
+                {
+                    if (bounderies)
+                    {
+                        chunk.Render(true);
+                    }
+                    else
+                    {
+                        chunk.Render(false);
+                    }
+                }
+
         }
     }
 }

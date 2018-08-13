@@ -3,6 +3,7 @@ using LibNoise;
 using LibNoise.Filter;
 using LibNoise.Primitive;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using Tiles.Structures;
 using Tiles.Tiles;
 using Tiles.Util;
@@ -86,13 +87,21 @@ namespace Tiles
         }
 
 
-        public void Render()
+        public void Render(bool bounderies = false)
         {
-            if (IsChunkGenerated() && IsPlayerInChunk())
+            if (IsChunkGenerated())
                 for (var i = 0; i < Constants.chunkSize; i++)
                 for (var j = 0; j < Constants.chunkSize; j++)
                 {
-                    array[i, j].Render();
+                    if (bounderies)
+                    {
+                        RenderChunkBounderies();
+                        array[i, j].Render(true);
+                    }
+                    else
+                    {
+                        array[i, j].Render(false);
+                    }
                     try
                     {
                         structureArray[i, j].Render();
@@ -102,6 +111,24 @@ namespace Tiles
 //                            Console.WriteLine(e);
                     }
                 }
+        }
+
+        private void RenderChunkBounderies()
+        {
+
+                GL.LineWidth(Constants.tileDebugLineThickness);
+                GL.Begin(PrimitiveType.LineLoop);
+                GL.Color3(Constants.chunkDebugColor);
+                GL.Vertex2(x, y);
+
+                GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y);
+
+                GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y + Constants.tileSize * Constants.chunkSize);
+
+                GL.Vertex2(x, y + Constants.tileSize * Constants.chunkSize);
+                GL.End();
+
+            GL.Color3(new Vector3(1f, 1f, 1f));
         }
 
         public bool IsChunkGenerated()

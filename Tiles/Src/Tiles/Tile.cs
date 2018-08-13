@@ -1,4 +1,5 @@
-﻿using OpenTK;
+﻿using System.Drawing;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
@@ -94,7 +95,7 @@ namespace Tiles.Tiles
             Translate(new Vector2(Constants.tileMoveAmount, 0));
         }
 
-        public virtual void Render()
+        public virtual void Render(bool bounderies = false)
         {
             if (!drawTexture)
             {
@@ -115,23 +116,47 @@ namespace Tiles.Tiles
             }
             else
             {
-                tex.Load();
-                GL.Begin(PrimitiveType.Quads);
-                GL.Color3(color);
-                GL.TexCoord2(0, 1);
+                RenderTexture();
+            }
+
+            if (bounderies)
+            {
+                RenderTexture();
+
+                GL.LineWidth(Constants.tileDebugLineThickness);
+                GL.Begin(PrimitiveType.LineLoop);
+                GL.Color3(Constants.tilesDebugColor);
                 GL.Vertex2(vertcies[0]);
 
-                GL.TexCoord2(1, 1);
                 GL.Vertex2(vertcies[1]);
 
-                GL.TexCoord2(1, 0);
                 GL.Vertex2(vertcies[2]);
 
-                GL.TexCoord2(0, 0);
                 GL.Vertex2(vertcies[3]);
                 GL.End();
-                GL.Color3(new Vector3(1f, 1f, 1f));
             }
+            GL.Color3(new Vector3(1f, 1f, 1f));
+
+        }
+
+        private void RenderTexture()
+        {
+            tex.Load();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(color);
+            GL.TexCoord2(0, 1);
+            GL.Vertex2(vertcies[0]);
+
+            GL.TexCoord2(1, 1);
+            GL.Vertex2(vertcies[1]);
+
+            GL.TexCoord2(1, 0);
+            GL.Vertex2(vertcies[2]);
+
+            GL.TexCoord2(0, 0);
+            GL.Vertex2(vertcies[3]);
+            GL.End();
+            GL.Color3(new Vector3(1f, 1f, 1f));
         }
 
         public override string ToString()

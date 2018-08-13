@@ -5,6 +5,7 @@
     <e p="C:\Users\Notebook\Desktop\Tiles" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="Tiles" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
         <e p="Assets" t="Include">
           <e p="Player" t="Include">
             <e p="Attack.png" t="Include" />
@@ -50,6 +51,13 @@
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="GrassTile.png" t="Include" />
         </e>
         <e p="Src" t="Include">
           <e p="Chunk.cs" t="Include" />

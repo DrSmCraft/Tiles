@@ -121,11 +121,11 @@ namespace Tiles
             return action;
         }
 
-        public void Render()
+        public void Render(bool bounderies = false)
         {
             playerTile.SetFacing(playerFacing);
             playerTile.SetAction(action);
-            playerTile.Render();
+            playerTile.Render(bounderies);
         }
     }
 }

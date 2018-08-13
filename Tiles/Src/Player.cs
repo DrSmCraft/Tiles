@@ -8,7 +8,8 @@ namespace Tiles
         public enum PlayerAction
         {
             Attacking,
-            Walking
+            Walking,
+            Sneaking
         }
 
         public enum PlayerFacing
@@ -88,6 +89,42 @@ namespace Tiles
             playerTile.SetFacing(playerFacing);
             playerTile.SetAction(action);
             Translate(new Vector2(Constants.playerMoveAmount, 0));
+        }
+
+        public void SneakUp()
+        {
+            action = PlayerAction.Sneaking;
+            playerFacing = PlayerFacing.Back;
+            playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
+            Translate(new Vector2(0, Constants.playerSneakAmount));
+        }
+
+        public void SneakDown()
+        {
+            action = PlayerAction.Sneaking;
+            playerFacing = PlayerFacing.Front;
+            playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
+            Translate(new Vector2(0, -Constants.playerSneakAmount));
+        }
+
+        public void SneakLeft()
+        {
+            action = PlayerAction.Sneaking;
+            playerFacing = PlayerFacing.Left;
+            playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
+            Translate(new Vector2(-Constants.playerSneakAmount, 0));
+        }
+
+        public void SneakRight()
+        {
+            action = PlayerAction.Sneaking;
+            playerFacing = PlayerFacing.Right;
+            playerTile.SetFacing(playerFacing);
+            playerTile.SetAction(action);
+            Translate(new Vector2(Constants.playerSneakAmount, 0));
         }
 
 

@@ -27,7 +27,7 @@
 
         public void Load(Player.PlayerAction action, Player.PlayerFacing facing)
         {
-            if (action == Player.PlayerAction.Walking)
+            if (action == Player.PlayerAction.Walking || action == Player.PlayerAction.Sneaking)
             {
                 if (facing == Player.PlayerFacing.Front) front.Load();
 

@@ -10,7 +10,7 @@ namespace Tiles
     {
         public DateTime attackTime;
         protected Debugger debugger;
-        protected bool displayDebug = false;
+        protected bool displayDebug;
         private KeyboardState keyboardState, lastKeyboardState;
         private Vector2 lastPlayerLocation;
         private MouseState mouseState;
@@ -24,7 +24,7 @@ namespace Tiles
         {
             startTime = DateTime.Now;
             time = DateTime.Now;
-            
+
 
             world = new World();
             VSync = VSyncMode.On;
@@ -82,19 +82,39 @@ namespace Tiles
 
             if (keyboardState[Key.Escape]) Exit();
 
-            if (keyboardState[Constants.debug] || lastKeyboardState[Constants.debug])
-            {
-                displayDebug = !displayDebug;
-            }
+            if (keyboardState[Constants.debug] || lastKeyboardState[Constants.debug]) displayDebug = !displayDebug;
 
             if (keyboardState[Constants.moveLeft] && lastKeyboardState[Constants.moveLeft])
-                world.player.MoveLeft();
+            {
+                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                    world.player.SneakLeft();
+                else
+                    world.player.MoveLeft();
+            }
+
             if (keyboardState[Constants.moveRight] && lastKeyboardState[Constants.moveRight])
-                world.player.MoveRight();
+            {
+                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                    world.player.SneakRight();
+                else
+                    world.player.MoveRight();
+            }
+
             if (keyboardState[Constants.moveUp] && lastKeyboardState[Constants.moveUp])
-                world.player.MoveUp();
+            {
+                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                    world.player.SneakUp();
+                else
+                    world.player.MoveUp();
+            }
+
             if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
-                world.player.MoveDown();
+            {
+                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                    world.player.SneakDown();
+                else
+                    world.player.MoveDown();
+            }
 
             if (mouseState[Constants.attackKey])
             {
@@ -105,9 +125,11 @@ namespace Tiles
             if (CheckElapsedTimeSeconds(attackTime, Constants.attackDelay))
                 world.player.SetAction(Player.PlayerAction.Walking);
 
+            if (keyboardState[Constants.sneak]) world.player.SetAction(Player.PlayerAction.Sneaking);
 
-            if (keyboardState[Key.B] && lastKeyboardState[Key.B] || IsOutsideWindow(world.player.GetLocation()))
-                world.player.Move(Constants.playerStartPosition);
+
+//            if (keyboardState[Key.B] && lastKeyboardState[Key.B] || IsOutsideWindow(world.player.GetLocation()))
+//                world.player.Move(Constants.playerStartPosition);
 
             var vec = -1 * (world.player.GetLocation() - lastPlayerLocation);
             var vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);

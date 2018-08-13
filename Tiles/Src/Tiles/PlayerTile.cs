@@ -25,7 +25,7 @@ namespace Tiles.Tiles
 
         public override void Translate(Vector2 moveVector)
         {
-            location += moveVector;
+            location += moveVector * (Constants.tileSize / Constants.playerSize);
             vertcies = new[]
             {
                 new Vector2(location.X * Constants.playerSize, location.Y * Constants.playerSize),

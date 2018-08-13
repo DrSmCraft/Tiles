@@ -26,9 +26,10 @@ namespace Tiles
 
         // Player Constants
         public static Vector3 playerColor = new Vector3(1f, 0, 0);
-        public static float playerMoveAmount = tileSize * 0.001f;
+        public static float playerMoveAmount = tileSize * 0.003f;
+        public static float playerSneakAmount = playerMoveAmount * 0.1f;
         public static float playerSize = 100f;
-        public static Vector2 playerStartPosition = new Vector2(0, 0);
+        public static Vector2 playerStartPosition = new Vector2(chunkSize / 2.0f, chunkSize / 2.0f);
         public static double attackDelay = 100;
 
         // Website used to generate charecter sprite
@@ -59,6 +60,7 @@ namespace Tiles
         public static Key moveRight = Key.D;
         public static Key moveUp = Key.W;
         public static Key moveDown = Key.S;
+        public static Key sneak = Key.ShiftLeft;
         public static Key debug = Key.Tilde;
         public static MouseButton attackKey = MouseButton.Left;
 
@@ -76,7 +78,7 @@ namespace Tiles
         public static Color tilesDebugColor = Color.Khaki;
         public static Color playerDebugColor = Color.Red;
         public static Color chunkDebugColor = Color.Crimson;
-        public static float tileDebugLineThickness = 5.0f;
+        public static float tileDebugLineThickness = 3.0f;
 
         // Texture Constants
 //        public static Texture grassTexture =

@@ -15,3 +15,4 @@ C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Debug\Properties\Resources.Designer.cs
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Debug\Properties\Resources.resx
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Debug\Tiles.Properties.Resources.resources
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Debug\Tiles.csproj.GenerateResource.cache
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Debug\Tiles.g.resources

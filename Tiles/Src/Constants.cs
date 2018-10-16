@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
+using System.Resources;
+using Gwen.Skin;
 using OpenTK;
 using OpenTK.Input;
+using Tiles.Properties;
 
 namespace Tiles
 {
     public class Constants
     {
         public static string baseDirectory = AppContext.BaseDirectory;
+        public static string defaultLogPath = baseDirectory + @"\Log.txt";
 
-        public static float tileSize = 50f; // tile size in pixels default: 100f
+        public static float tileSize = 60f; // tile size in pixels default: 100f
         public static int chunkSize = 15; // chunk size in tiles
         public static Vector2 dim = new Vector2(100, 100); // Full dimenstions of map
         public static int chunksVisable = 1;
@@ -23,37 +26,46 @@ namespace Tiles
         public static float generatorZoom = 0.1f;
         public static float biomeGeneratorZoom = 0.01f;
 
+        public static int maxEntityNumber = 10;
+
 
         // Player Constants
         public static Vector3 playerColor = new Vector3(1f, 0, 0);
         public static float playerMoveAmount = tileSize * 0.003f;
         public static float playerSneakAmount = playerMoveAmount * 0.1f;
-        public static float playerSize = 100f;
-        public static Vector2 playerStartPosition = new Vector2(chunkSize / 2.0f, chunkSize / 2.0f);
+        public static float playerSize = tileSize;
+        public static Vector2 playerStartPosition = new Vector2(5, 5);
         public static double attackDelay = 100;
+        public static int playerHealth = 10;
+
+
+
 
         // Website used to generate charecter sprite
         // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#
         // http://gaurav.munjal.us/Universal-LPC-Spritesheet-Character-Generator/#?clothes=longsleeve_brown&legs=pants_teal&mail=chain&nose=straight&ears=big&shoes=boots_golden&weapon=none&hair=plain_dark_blonde&belt=leather&hat=cap_leather
-//        public static PlayerTexture playerTexture = new PlayerTexture(
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\PlayerFront.png"), 100),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\PlayerBack.png"), 101),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\PlayerLeft.png"), 102),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\PlayerRight.png"), 103),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\AttackFront.png"), 104),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\AttackBack.png"), 105),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\AttackLeft.png"), 106),
-//            new Texture(Path.Combine(baseDirectory, @"Assets\\Player\\AttackRight.png"), 107));
 
-        public static PlayerTexture playerTexture = new PlayerTexture(
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("PlayerFront"), 100),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("PlayerBack"), 101),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("PlayerLeft"), 102),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("PlayerRight"), 103),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("AttackFront"), 104),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("AttackBack"), 105),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("AttackLeft"), 106),
-            new Texture((Bitmap) Properties.Resources.ResourceManager.GetObject("AttackRight"), 107));
+        public static EntityTexture playerTexture = new EntityTexture(
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerFront"), 100),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerBack"), 101),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerLeft"), 102),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerRight"), 103),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerAttackFront"), 104),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerAttackBack"), 105),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerAttackLeft"), 106),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("PlayerAttackRight"), 107));
+
+        // Orc Constants
+        public static int orcHealth = (int) (playerHealth * 1.5);
+        public static EntityTexture orcTexture = new EntityTexture(
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcFront"), 111),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcBack"), 111),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcLeft"), 112),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcRight"), 113),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcAttackFront"), 114),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcAttackBack"), 115),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcAttackLeft"), 116),
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("OrcAttackRight"), 117));
 
         // Keyboard Constants
         public static Key moveLeft = Key.A;
@@ -81,39 +93,18 @@ namespace Tiles
         public static float tileDebugLineThickness = 3.0f;
 
         // Texture Constants
-//        public static Texture grassTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\GrassTile.png"), 1);
-//
-//        public static Texture stoneTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\StoneTile.png"), 2);
-//
-//        public static Texture waterTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\WaterTile.png"), 3);
-//
-//        public static Texture dirtTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\DirtTile.png"), 4);
-//
-//        public static Texture woodTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\WoodTile.png"), 5);
-//
-//        public static Texture leavesTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Tiles\LeavesTile.png"), 6);
-//
-//        public static Texture treeTexture =
-//            new Texture(Path.Combine(baseDirectory, @"Assets\Structures\TreeStructure.png"), 10);
+
+        public static Texture grassTexture = new Texture((Bitmap) Resources.ResourceManager.GetObject("GrassTile"), 1);
+        public static Texture stoneTexture = new Texture((Bitmap) Resources.ResourceManager.GetObject("StoneTile"), 2);
+        public static Texture waterTexture = new Texture((Bitmap) Resources.ResourceManager.GetObject("WaterTile"), 3);
+        public static Texture dirtTexture = new Texture((Bitmap) Resources.ResourceManager.GetObject("DirtTile"), 4);
+        public static Texture woodTexture = new Texture((Bitmap) Resources.ResourceManager.GetObject("WoodTile"), 5);
+
+        public static Texture leavesTexture =
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("LeavesTile"), 6);
 
 
-        public static Texture grassTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("GrassTile"), 1);
-        public static Texture stoneTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("StoneTile"), 2);
-        public static Texture waterTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("WaterTile"), 3);
-        public static Texture dirtTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("DirtTile"), 4);
-        public static Texture woodTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("WoodTile"), 5);
-        public static Texture leavesTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("LeavesTile"), 6);
-
-
-
-        public static Texture treeTexture = new Texture((Bitmap)Properties.Resources.ResourceManager.GetObject("TreeStructure"), 10);
-
-
+        public static Texture treeTexture =
+            new Texture((Bitmap) Resources.ResourceManager.GetObject("TreeStructure"), 10);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -11,17 +12,20 @@ namespace Tiles
         public DateTime attackTime;
         protected Debugger debugger;
         protected bool displayDebug;
-        private KeyboardState keyboardState, lastKeyboardState;
+//        private KeyboardState Keyboard, Keyboard;
         private Vector2 lastPlayerLocation;
-        private MouseState mouseState;
+//        private MouseState Mouse;
+        public double renderTime, updateTime;
         public DateTime startTime;
         public DateTime time;
         public World world;
 
 
+
         public Game() : base((int) Constants.windowSize.X, (int) Constants.windowSize.Y, GraphicsMode.Default,
             "Tiles Game")
         {
+            Logger.Log("Game Class Initializing");
             startTime = DateTime.Now;
             time = DateTime.Now;
 
@@ -34,37 +38,56 @@ namespace Tiles
 
         private void SetupGL()
         {
+            Logger.Log("Setting Up OpenGL");
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
 
-            GL.Ortho(0, Constants.windowSize.X, 0, Constants.windowSize.Y, -1, 1);
-            GL.Viewport(0, 0, (int) Constants.windowSize.X, (int) Constants.windowSize.Y);
+            GL.Ortho(0, Width, 0, Height, -1, 1);
+            GL.Viewport(0, 0, Width, Height);
+
+
+
+
         }
 
 
         protected override void OnLoad(EventArgs e)
         {
+            Logger.Log("Initializing OpenGL");
+
             Width = (int) Constants.windowSize.X;
             Height = (int) Constants.windowSize.Y;
-            world.player.Translate(Constants.playerStartPosition);
+//            world.player.Translate(Constants.playerStartPosition);
             world.GenerateChunk(world.player.GetLocation());
             lastPlayerLocation = world.player.GetLocation();
             world.Update();
 
 
             GL.ClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black and opaque
-//            base.OnLoad(e);
+            base.OnLoad(e);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            Logger.Log("Rendering Frame");
+            renderTime = e.Time;
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 
             world.Render(displayDebug);
             world.player.Render(displayDebug);
+            foreach (Entity entity in world.entities)
+            {
+                entity.Render();
+            }
 
-            if (displayDebug) debugger.DisplayInformation();
+            if (displayDebug)
+            {
+                debugger.DisplayInformation();
+                Logger.Log("Debug Information Enabled");
+            }
+
 
 
             SwapBuffers();
@@ -72,74 +95,107 @@ namespace Tiles
             base.OnRenderFrame(e);
         }
 
+        protected void ChangeWindowState()
+        {
+            WindowState current = WindowState;
+            if (current == WindowState.Normal)
+            {
+                WindowState = WindowState.Fullscreen;
+                Logger.Log("WindowState Changed: " + WindowState);
+                GL.Viewport(0, 0, Width, Height);
+                return;
+            }
+
+            if (current == WindowState.Fullscreen)
+            {
+                WindowState = WindowState.Normal;
+                Logger.Log("WindowState Changed: " + WindowState);
+                GL.Viewport(0, 0, Width, Height);
+                return;
+            }
+
+
+        }
+
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
+            Logger.Log("Updating Frame");
+            updateTime = e.Time;
+
             time = DateTime.Now;
-            mouseState = Mouse.GetState();
-            keyboardState = Keyboard.GetState();
-            world.SetPlayerInChunk();
+
+            world.SetBoolPlayerInChunk();
             world.Update();
 
-            if (keyboardState[Key.Escape]) Exit();
-
-            if (keyboardState[Constants.debug] || lastKeyboardState[Constants.debug]) displayDebug = !displayDebug;
-
-            if (keyboardState[Constants.moveLeft] && lastKeyboardState[Constants.moveLeft])
+            if (Keyboard[Key.Escape]) Exit();
+            if (Keyboard[Key.F11])
             {
-                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                ChangeWindowState();
+            }
+
+
+            if (Keyboard[Constants.debug] && Keyboard[Constants.debug]) displayDebug = !displayDebug;
+
+            if (Keyboard[Constants.moveLeft] && Keyboard[Constants.moveLeft])
+            {
+                if (Keyboard[Constants.sneak] && Keyboard[Constants.sneak])
                     world.player.SneakLeft();
                 else
                     world.player.MoveLeft();
             }
 
-            if (keyboardState[Constants.moveRight] && lastKeyboardState[Constants.moveRight])
+            if (Keyboard[Constants.moveRight] && Keyboard[Constants.moveRight])
             {
-                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                if (Keyboard[Constants.sneak] && Keyboard[Constants.sneak])
                     world.player.SneakRight();
                 else
                     world.player.MoveRight();
             }
 
-            if (keyboardState[Constants.moveUp] && lastKeyboardState[Constants.moveUp])
+            if (Keyboard[Constants.moveUp] && Keyboard[Constants.moveUp])
             {
-                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                if (Keyboard[Constants.sneak] && Keyboard[Constants.sneak])
                     world.player.SneakUp();
                 else
                     world.player.MoveUp();
             }
 
-            if (keyboardState[Constants.moveDown] && lastKeyboardState[Constants.moveDown])
+            if (Keyboard[Constants.moveDown] && Keyboard[Constants.moveDown])
             {
-                if (keyboardState[Constants.sneak] && lastKeyboardState[Constants.sneak])
+                if (Keyboard[Constants.sneak] && Keyboard[Constants.sneak])
                     world.player.SneakDown();
                 else
                     world.player.MoveDown();
             }
 
-            if (mouseState[Constants.attackKey])
+            if (Mouse[Constants.attackKey])
             {
                 attackTime = time;
                 world.player.Attack();
             }
 
             if (CheckElapsedTimeSeconds(attackTime, Constants.attackDelay))
-                world.player.SetAction(Player.PlayerAction.Walking);
+                world.player.SetAction(Entity.EntityAction.Walking);
 
-            if (keyboardState[Constants.sneak]) world.player.SetAction(Player.PlayerAction.Sneaking);
+            if (Keyboard[Constants.sneak]) world.player.SetAction(Entity.EntityAction.Sneaking);
 
 
-//            if (keyboardState[Key.B] && lastKeyboardState[Key.B] || IsOutsideWindow(world.player.GetLocation()))
-//                world.player.Move(Constants.playerStartPosition);
+            if (Keyboard[Key.B] && Keyboard[Key.B] || IsOutsideWindow(world.player.GetLocation()))
+                world.player.Move(Constants.playerStartPosition);
+
+//            Console.Out.WriteLine(world.player.GetLocation());
+//                Console.WriteLine(world.GetTileAtPlayer());
+
+
 
             var vec = -1 * (world.player.GetLocation() - lastPlayerLocation);
             var vec1 = new Vector3(vec.X * Constants.tileSize, vec.Y * Constants.tileSize, 0);
-//            Console.Out.WriteLine(vec + "                " + vec1);
             GL.Translate(vec1);
 
             if (!world.GetChunkAtPlayer().IsChunkGenerated()) world.GenerateChunk(world.player.GetLocation());
 
 
-            lastKeyboardState = keyboardState;
+//            lastKeyboardState = keyboardStae;
             lastPlayerLocation = world.player.GetLocation();
 
             base.OnUpdateFrame(e);
@@ -168,6 +224,13 @@ namespace Tiles
             if (time.Millisecond > ti.Millisecond) return true;
 
             return false;
+        }
+
+        public override void Exit()
+        {
+            Logger.WriteToFile(Constants.defaultLogPath);
+            base.Exit();
+            Environment.Exit(0);
         }
     }
 }

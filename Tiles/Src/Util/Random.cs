@@ -2,25 +2,24 @@
 
 namespace Tiles.Util
 {
-    public class TilesRandom
+    public class TilesRandom : Random
     {
-        private readonly Random rand;
         private int seed;
 
-        public TilesRandom(int seed)
+        public TilesRandom(int seed) : base(seed)
         {
-            this.seed = seed;
-            rand = new Random(seed);
         }
 
         public object RandomObject(params object[] list)
         {
-            return list[rand.Next(0, list.Length)];
+            return list[Next(0, list.Length)];
         }
 
         public bool RandomByChance(float chance)
         {
-            return rand.Next(100) <= chance * 100;
+            return Next(100) <= chance * 100;
         }
+
+
     }
 }

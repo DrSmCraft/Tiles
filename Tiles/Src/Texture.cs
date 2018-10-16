@@ -36,7 +36,7 @@ namespace Tiles
         {
             GL.Enable(EnableCap.Texture2D);
             GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
             GL.GenTextures(1, out texId);
             GL.BindTexture(TextureTarget.Texture2D, texId);

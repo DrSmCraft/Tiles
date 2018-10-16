@@ -3,7 +3,6 @@ C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Tiles.pdb
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\LibNoise.dll
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.dll
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\LibNoise.xml
-C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.pdb
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.xml
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csprojAssemblyReference.cache
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csproj.CoreCompileInputs.cache
@@ -15,3 +14,11 @@ C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Properties\Resources.resx
 C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Properties\Resources.Designer.cs
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.Properties.Resources.resources
 C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.csproj.GenerateResource.cache
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Gwen.dll
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Gwen.Renderer.OpenTK.dll
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\QuickFont.dll
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Gwen.xml
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\Gwen.Renderer.OpenTK.xml
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\OpenTK.dll.config
+C:\Users\Notebook\Desktop\Tiles\Tiles\bin\Release\QuickFont.xml
+C:\Users\Notebook\Desktop\Tiles\Tiles\obj\Release\Tiles.g.resources

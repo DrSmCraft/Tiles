@@ -12,12 +12,12 @@ namespace Tiles
 {
     public class Chunk
     {
+        private readonly int seed = Constants.seed;
         private readonly Voronoi voronoi;
         protected Tile[,] array = new Tile[Constants.chunkSize, Constants.chunkSize];
         protected bool isGenerated;
         protected bool isPlayerIn; // Is player in this chunk
         protected TilesRandom random = new TilesRandom(Constants.seed);
-        private readonly int seed = Constants.seed;
         protected SimplexPerlin simplexPerlin;
         protected Structure[,] structureArray = new Structure[Constants.chunkSize, Constants.chunkSize];
         protected int x, y;
@@ -64,6 +64,23 @@ namespace Tiles
             return new DirtTile(vec);
         }
 
+        public Tile GetTile(int xCoord, int yCoord)
+        {
+            return array[yCoord, xCoord];
+        }
+
+        public Tile GetTile(float xCoord, float yCoord)
+        {
+            return array[(int) yCoord, (int) xCoord];
+        }
+
+        public Tile GetTile(Vector2 vec)
+        {
+            float xCoord = vec.X;
+            float yCoord = vec.Y;
+            return array[(int) yCoord, (int) xCoord];
+        }
+
         private Structure GenerateStructure(int x, int y)
         {
             if (array[y, x] is GrassTile)
@@ -78,10 +95,10 @@ namespace Tiles
             return isPlayerIn;
         }
 
-        public void SetPlayerInChunk(Player player)
+        public void SetBoolPlayerInChunk(Entity entity)
         {
-            var playerX = player.GetLocation().X;
-            var playerY = player.GetLocation().Y;
+            var playerX = entity.GetLocation().X;
+            var playerY = entity.GetLocation().Y;
             isPlayerIn = playerX >= x && playerX <= x + Constants.tileSize && playerY >= y &&
                          playerY <= y + Constants.tileSize;
         }
@@ -102,6 +119,7 @@ namespace Tiles
                     {
                         array[i, j].Render(false);
                     }
+
                     try
                     {
                         structureArray[i, j].Render();
@@ -115,18 +133,17 @@ namespace Tiles
 
         private void RenderChunkBounderies()
         {
+            GL.LineWidth(Constants.tileDebugLineThickness);
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Constants.chunkDebugColor);
+            GL.Vertex2(x, y);
 
-                GL.LineWidth(Constants.tileDebugLineThickness);
-                GL.Begin(PrimitiveType.LineLoop);
-                GL.Color3(Constants.chunkDebugColor);
-                GL.Vertex2(x, y);
+            GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y);
 
-                GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y);
+            GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y + Constants.tileSize * Constants.chunkSize);
 
-                GL.Vertex2(x + Constants.tileSize * Constants.chunkSize, y + Constants.tileSize * Constants.chunkSize);
-
-                GL.Vertex2(x, y + Constants.tileSize * Constants.chunkSize);
-                GL.End();
+            GL.Vertex2(x, y + Constants.tileSize * Constants.chunkSize);
+            GL.End();
 
             GL.Color3(new Vector3(1f, 1f, 1f));
         }
@@ -140,5 +157,24 @@ namespace Tiles
         {
             return "Chunk: (" + x + ", " + y + ") " + "Is Generated: " + IsChunkGenerated();
         }
+
+//        public Tile GetTileAtPlayer(Entity entity)
+//        {
+//            var loc = entity.GetLocation();
+//            var size = entity.GetSize();
+//
+//            var X = (loc.X + size) / 2;
+//            var Y = (loc.Y + size) / 2;
+//
+//            try
+//            {
+//                return array[(int) (Y - y), (int) (X - x)];
+//            }
+//            catch (Exception e)
+//            {
+//                Logger.Log("Attempted to find Tile at Player while Player is not in Chunk");
+//                return null;
+//            }
+//        }
     }
 }

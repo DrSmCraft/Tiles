@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Tiles.Tiles
@@ -97,46 +96,13 @@ namespace Tiles.Tiles
 
         public virtual void Render(bool bounderies = false)
         {
-            if (!drawTexture)
-            {
-                GL.Begin(PrimitiveType.Quads);
-                GL.Color3(color);
-                GL.Vertex2(vertcies[0]);
+            if (!drawTexture) RenderColor();
 
-                GL.Color3(color);
-                GL.Vertex2(vertcies[1]);
 
-                GL.Color3(color);
-                GL.Vertex2(vertcies[2]);
+            if (bounderies) RenderBounderies();
+            RenderTexture();
 
-                GL.Color3(color);
-                GL.Vertex2(vertcies[3]);
-                GL.End();
-                GL.Color3(new Vector3(1f, 1f, 1f));
-            }
-            else
-            {
-                RenderTexture();
-            }
-
-            if (bounderies)
-            {
-                RenderTexture();
-
-                GL.LineWidth(Constants.tileDebugLineThickness);
-                GL.Begin(PrimitiveType.LineLoop);
-                GL.Color3(Constants.tilesDebugColor);
-                GL.Vertex2(vertcies[0]);
-
-                GL.Vertex2(vertcies[1]);
-
-                GL.Vertex2(vertcies[2]);
-
-                GL.Vertex2(vertcies[3]);
-                GL.End();
-            }
             GL.Color3(new Vector3(1f, 1f, 1f));
-
         }
 
         private void RenderTexture()
@@ -159,7 +125,40 @@ namespace Tiles.Tiles
             GL.Color3(new Vector3(1f, 1f, 1f));
         }
 
-        public override string ToString()
+        private void RenderColor()
+        {
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(color);
+            GL.Vertex2(vertcies[0]);
+
+            GL.Color3(color);
+            GL.Vertex2(vertcies[1]);
+
+            GL.Color3(color);
+            GL.Vertex2(vertcies[2]);
+
+            GL.Color3(color);
+            GL.Vertex2(vertcies[3]);
+            GL.End();
+            GL.Color3(new Vector3(1f, 1f, 1f));
+        }
+
+        private void RenderBounderies()
+        {
+            GL.LineWidth(Constants.tileDebugLineThickness);
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Constants.tilesDebugColor);
+            GL.Vertex2(vertcies[0]);
+
+            GL.Vertex2(vertcies[1]);
+
+            GL.Vertex2(vertcies[2]);
+
+            GL.Vertex2(vertcies[3]);
+            GL.End();
+        }
+
+        public  override string ToString()
         {
             return "Tile at <" + location.X + ", " + location.Y + ">";
         }

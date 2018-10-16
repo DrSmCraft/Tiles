@@ -7,6 +7,19 @@
       <e p="Tiles" t="IncludeRecursive">
         <e p="app.config" t="Include" />
         <e p="Assets" t="Include">
+          <e p="Gui" t="Include">
+            <e p="DefaultSkin.png" t="Include" />
+          </e>
+          <e p="Orc" t="Include">
+            <e p="AttackRight.png" t="Include" />
+            <e p="OrcAttackBack.png" t="Include" />
+            <e p="OrcAttackFront.png" t="Include" />
+            <e p="OrcAttackLeft.png" t="Include" />
+            <e p="OrcBack.png" t="Include" />
+            <e p="OrcFront.png" t="Include" />
+            <e p="OrcLeft.png" t="Include" />
+            <e p="OrcRight.png" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="Attack.png" t="Include" />
             <e p="AttackBack.png" t="Include" />
@@ -15,6 +28,10 @@
             <e p="AttackRight.png" t="Include" />
             <e p="Character.png" t="Include" />
             <e p="Layer 1.png" t="Include" />
+            <e p="PlayerAttackBack.png" t="Include" />
+            <e p="PlayerAttackFront.png" t="Include" />
+            <e p="PlayerAttackLeft.png" t="Include" />
+            <e p="PlayerAttackRight.png" t="Include" />
             <e p="PlayerBack.png" t="Include" />
             <e p="PlayerFront.png" t="Include" />
             <e p="PlayerLeft.png" t="Include" />
@@ -63,8 +80,13 @@
           <e p="Chunk.cs" t="Include" />
           <e p="Constants.cs" t="Include" />
           <e p="Debugger.cs" t="Include" />
-          <e p="Player.cs" t="Include" />
-          <e p="PlayerTexture.cs" t="Include" />
+          <e p="Entities" t="Include">
+            <e p="Entity.cs" t="Include" />
+            <e p="EntityTexture.cs" t="Include" />
+            <e p="Orc.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+          </e>
+          <e p="Logger.cs" t="Include" />
           <e p="Structures" t="Include">
             <e p="Structure.cs" t="Include" />
             <e p="TreeStructure.cs" t="Include" />
@@ -72,9 +94,9 @@
           <e p="Texture.cs" t="Include" />
           <e p="Tiles" t="Include">
             <e p="DirtTile.cs" t="Include" />
+            <e p="EntityTile.cs" t="Include" />
             <e p="GrassTile.cs" t="Include" />
             <e p="LeavesTile.cs" t="Include" />
-            <e p="PlayerTile.cs" t="Include" />
             <e p="StoneTile.cs" t="Include" />
             <e p="Tile.cs" t="Include" />
             <e p="WaterTile.cs" t="Include" />

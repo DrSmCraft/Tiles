@@ -32,12 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gwen, Version=3.0.6001.172, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Gwen.3.0.6001.172\lib\net40\Gwen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gwen.Renderer.OpenTK, Version=3.0.6001.430, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Gwen.Renderer.OpenTK.3.0.6001.430\lib\net40\Gwen.Renderer.OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LibNoise, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\LibNoise.0.2\lib\NET45\LibNoise.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenTK, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <HintPath>..\packages\OpenTK.3.0.1\lib\net20\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <HintPath>..\packages\OpenTK.Next.1.1.1616.8959\lib\net20\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickFont, Version=4.0.6000.41401, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\QuickFont.Desktop.4.0.6000.41401\lib\net40\QuickFont.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,15 +73,18 @@
     <Compile Include="Src\Chunk.cs" />
     <Compile Include="Src\Constants.cs" />
     <Compile Include="Src\Debugger.cs" />
-    <Compile Include="Src\Player.cs" />
-    <Compile Include="Src\PlayerTexture.cs" />
+    <Compile Include="Src\Entities\Entity.cs" />
+    <Compile Include="Src\Entities\EntityTexture.cs" />
+    <Compile Include="Src\Entities\Orc.cs" />
+    <Compile Include="Src\Entities\Player.cs" />
+    <Compile Include="Src\Logger.cs" />
     <Compile Include="Src\Structures\Structure.cs" />
     <Compile Include="Src\Structures\TreeStructure.cs" />
     <Compile Include="Src\Texture.cs" />
     <Compile Include="Src\Tiles\DirtTile.cs" />
     <Compile Include="Src\Tiles\GrassTile.cs" />
     <Compile Include="Src\Tiles\LeavesTile.cs" />
-    <Compile Include="Src\Tiles\PlayerTile.cs" />
+    <Compile Include="Src\Tiles\EntityTile.cs" />
     <Compile Include="Src\Tiles\StoneTile.cs" />
     <Compile Include="Src\Tiles\Tile.cs" />
     <Compile Include="Src\Tiles\WaterTile.cs" />
@@ -95,6 +110,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Gui\DefaultSkin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Assets\Orc\AttackRight.png" />
+    <None Include="Assets\Orc\OrcAttackBack.png" />
+    <None Include="Assets\Orc\OrcAttackFront.png" />
+    <None Include="Assets\Orc\OrcAttackLeft.png" />
+    <None Include="Assets\Orc\OrcBack.png" />
+    <None Include="Assets\Orc\OrcFront.png" />
+    <None Include="Assets\Orc\OrcLeft.png" />
+    <None Include="Assets\Orc\OrcRight.png" />
     <Content Include="Assets\Player\Attack.png" />
     <Content Include="Assets\Player\AttackBack.png" />
     <Content Include="Assets\Player\AttackFront.png" />
@@ -102,6 +128,10 @@
     <Content Include="Assets\Player\AttackRight.png" />
     <Content Include="Assets\Player\Character.png" />
     <Content Include="Assets\Player\Layer 1.png" />
+    <None Include="Assets\Player\PlayerAttackBack.png" />
+    <None Include="Assets\Player\PlayerAttackFront.png" />
+    <None Include="Assets\Player\PlayerAttackLeft.png" />
+    <None Include="Assets\Player\PlayerAttackRight.png" />
     <Content Include="Assets\Player\PlayerBack.png" />
     <Content Include="Assets\Player\PlayerFront.png" />
     <Content Include="Assets\Player\PlayerLeft.png" />
@@ -126,6 +156,13 @@
     <Content Include="Assets\Tiles\WoodTile.psd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\OpenTK.Next.1.1.1616.8959\build\OpenTK.Next.targets" Condition="Exists('..\packages\OpenTK.Next.1.1.1616.8959\build\OpenTK.Next.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenTK.Next.1.1.1616.8959\build\OpenTK.Next.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenTK.Next.1.1.1616.8959\build\OpenTK.Next.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">

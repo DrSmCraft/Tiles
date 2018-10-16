@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-
-namespace Tiles
+﻿namespace Tiles
 {
     internal class Program
     {
@@ -9,11 +6,9 @@ namespace Tiles
         {
             using (var game = new Game())
             {
+                Logger.Log("Starting Program");
                 game.Run(60.0, 60.0);
             }
         }
-
-
-
     }
 }

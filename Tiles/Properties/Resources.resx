@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultLogPath" xml:space="preserve">
+    <value>AppContext.BaseDirectory + "Log.log"</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AttackBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Player\AttackBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AttackFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Player\AttackFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AttackLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Player\AttackLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AttackRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Player\AttackRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DirtTile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Tiles\DirtTile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +129,42 @@
   </data>
   <data name="LeavesTile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Tiles\LeavesTile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcAttackBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcAttackBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcAttackFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcAttackFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcAttackLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcAttackLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcAttackRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\AttackRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OrcRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Orc\OrcRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerAttackBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Player\PlayerAttackBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerAttackFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Player\PlayerAttackFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerAttackLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Player\PlayerAttackLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerAttackRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Player\PlayerAttackRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlayerBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Player\PlayerBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
